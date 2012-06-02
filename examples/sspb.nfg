@@ -1,0 +1,12 @@
+NFG 1 R "Schere, Stein, Papier, Brunnen" { "Ernie" "Bert" }
+
+{ { "Schere" "Stein" "Papier" "Brunnen" }
+{ "Schere" "Stein" "Papier" "Brunnen" }
+}
+""
+
+{
+{ "Spieler 1 gewinnt" 1, -1 }
+{ "Spieler 2 gewinnt" -1, 1 }
+}
+0 1 2 1 2 0 1 1 1 2 0 2 2 2 1 0 

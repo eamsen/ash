@@ -12,6 +12,7 @@ Requirements
 
 Dependencies
 ------------
+  + lpsolve55 (not included)
   + gflags (included)
   + gtest (included, only required for testing)
   + cpplint (included, only required for style checking)

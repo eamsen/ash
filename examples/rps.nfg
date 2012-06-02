@@ -1,0 +1,14 @@
+NFG 1 R "3 Spieler RPS" { "Spieler 1" "Spieler 2" "Spieler 3" }
+
+{ { "Schere" "Stein" "Papier" }
+{ "Schere" "Stein" "Papier" }
+{ "Schere" "Stein" "Papier" }
+}
+""
+
+{
+{ "Spieler 1 gewinnt" 1, -1, -1 }
+{ "Spieler 2 gewinnt" -1, 1, -1 }
+{ "Spieler 3 gewinnt" -1, -1, 1 }
+}
+0 1 0 2 0 0 0 0 3 3 0 0 0 0 1 0 2 0 0 0 2 0 3 0 1 0 0 

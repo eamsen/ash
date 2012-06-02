@@ -1,0 +1,12 @@
+NFG 1 R "Schere, Stein, Papier, Echse, Spock" { "Leonard" "Sheldon" }
+
+{ { "Schere" "Stein" "Papier" "Echse" "Spock" }
+{ "Schere" "Stein" "Papier" "Echse" "Spock" }
+}
+""
+
+{
+{ "Spieler 2 gewinnt" -1, 1 }
+{ "Spieler 1 gewinnt" 1, -1 }
+}
+0 2 1 1 2 1 0 2 1 2 2 1 0 2 1 2 2 1 0 1 1 1 2 2 0 

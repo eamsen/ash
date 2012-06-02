@@ -1,0 +1,14 @@
+NFG 1 R "Air Strike (4 targets)" { "Attacker" "Defender" }
+
+{ { "Target 1 (2)" "Target 2 (3)" "Target 3 (4)" "Target 4 (5)" }
+{ "Target 1 (2)" "Target 2 (3)" "Target 3 (4)" "Target 4 (5)" }
+}
+""
+
+{
+{ "3 units destroyed" 3, -3 }
+{ "4 units destroyed" 4, -4 }
+{ "2 units destroyed" 2, -2 }
+{ "5 units destroyed" 5, -5 }
+}
+0 1 2 4 3 0 2 4 3 1 0 4 3 1 2 0 
