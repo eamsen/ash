@@ -188,4 +188,15 @@ TEST_F(ParserTest, ParseStrategicGame) {
   EXPECT_THAT(game.outcomes[0].payoffs, ElementsAre(1, -1, -1));
   EXPECT_THAT(game.outcomes[1].payoffs, ElementsAre(-1, 1, -1));
   EXPECT_THAT(game.outcomes[2].payoffs, ElementsAre(-1, -1, 1));
+  // Check payoff indices.
+  ASSERT_EQ(27, game.payoff_indices.size());
+  vector<int> indices1(game.payoff_indices.begin(),
+                       game.payoff_indices.begin() + 10);
+  vector<int> indices2(game.payoff_indices.begin() + 10,
+                       game.payoff_indices.begin() + 20);
+  vector<int> indices3(game.payoff_indices.begin() + 20,
+                       game.payoff_indices.begin() + 27);
+  EXPECT_THAT(indices1, ElementsAre(0, 1, 0, 2, 0, 0, 0, 0, 3, 3));
+  EXPECT_THAT(indices2, ElementsAre(0, 0, 0, 0, 1, 0, 2, 0, 0, 0));
+  EXPECT_THAT(indices3, ElementsAre(2, 0, 3, 0, 1, 0, 0));
 }

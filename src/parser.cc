@@ -172,6 +172,7 @@ StrategicGame Parser::ParseStrategicGame() {
     pos = comment_end;
   }
   pos = LoadOutcomes(pos, &game);
+  pos = LoadPayoffIndices(pos, &game);
   return game;
 }
 
@@ -244,11 +245,14 @@ size_t Parser::LoadOutcomes(const size_t pos, StrategicGame* game) const {
     sub_section.clear();
     sub_pos = Between(sub_pos, kCurlBeg, kCurlEnd, section, &sub_section);
   }
+  return end;
 }
 
 size_t Parser::LoadPayoffIndices(const size_t pos, StrategicGame* game) const {
   assert(game);
   assert(pos < content_.size());
+  CollectNumerals(content_.substr(pos), &game->payoff_indices);
+  return content_.size();
 }
 
 size_t Parser::Between(const size_t pos, const char open, const char close,
