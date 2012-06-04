@@ -3,15 +3,19 @@
 #include <cassert>
 #include <iostream>
 #include "./parser.h"
+#include "./game.h"
+#include "./game-factory.h"
 #include "./clock.h"
 #include "./profiler.h"
 
 using std::cout;
 using std::string;
-using ash::parse::Parser;
-using ash::parse::StrategicGame;
 using base::Clock;
 using base::Profiler;
+using ash::parse::Parser;
+using ash::parse::StrategicGame;
+using ash::Game;
+using ash::GameFactory;
 
 // Flag for verbose output.
 DEFINE_bool(verbose, false, "Verbose output");
@@ -43,5 +47,7 @@ int main(int argc, char* argv[]) {
   if (FLAGS_verbose) {
     cout << parsed_game.Str();
   }
+
+  Game game = GameFactory::Create(parsed_game);
   return 0;
 }

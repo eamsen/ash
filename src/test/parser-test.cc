@@ -22,8 +22,7 @@ using ::testing::Contains;
 using ::testing::Not;
 // using ::testing::WhenSortedBy;
 
-class ParserTest : public ::testing::Test {
- public:
+struct ParserTest : public ::testing::Test {
   void SetUp() {
     nfg1 = string("NFG 1 R ") +
       " \"3 Player RPS\" { \"player 1\" \"player 2\" \"player 3\" }\n\n" +
@@ -40,6 +39,7 @@ class ParserTest : public ::testing::Test {
     nfg1_stream.write(nfg1.c_str(), nfg1.size());
     nfg1_stream.close();
   }
+
   void TearDown() {
     // /tmp/* is cleared automatically on reboot.
   }
