@@ -40,7 +40,7 @@ class Game {
   void SetPayoff(const StrategyProfile& profile, const int outcome);
   void SetPayoff(const int sp_id, const int outcome);
   int StrategyProfileId(const StrategyProfile& profile) const;
-
+  const Player& player(const int id) const;
   int num_strategy_profiles() const;
   int num_players() const;
   int num_outcomes() const;

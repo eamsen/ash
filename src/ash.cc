@@ -2,11 +2,13 @@
 #include <gflags/gflags.h>
 #include <cassert>
 #include <iostream>
+#include "./clock.h"
+#include "./profiler.h"
 #include "./parser.h"
 #include "./game.h"
 #include "./game-factory.h"
-#include "./clock.h"
-#include "./profiler.h"
+#include "./lcp.h"
+#include "./lcp-factory.h"
 
 using std::cout;
 using std::string;
@@ -16,6 +18,8 @@ using ash::parse::Parser;
 using ash::parse::StrategicGame;
 using ash::Game;
 using ash::GameFactory;
+using ash::Lcp;
+using ash::LcpFactory;
 
 // Flag for verbose output.
 DEFINE_bool(verbose, false, "Verbose output");
@@ -49,5 +53,7 @@ int main(int argc, char* argv[]) {
   }
 
   Game game = GameFactory::Create(parsed_game);
+  Lcp lcp = LcpFactory::Create(game);
+  cout << lcp.str() << "\n";
   return 0;
 }

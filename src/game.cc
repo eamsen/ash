@@ -57,6 +57,11 @@ void Game::SetPayoff(const int sp_id, const int outcome_id) {
   payoff_indices_[sp_id] = outcome_id;
 }
 
+const Player& Game::player(const int id) const {
+  assert(id >= 0 && id < num_players());
+  return players_[id];
+}
+
 int Game::num_strategy_profiles() const {
   return payoff_indices_.size();
 }
