@@ -21,6 +21,11 @@ int Player::AddStrategy(const int s_id) {
   return strategies_.size() - 1;
 }
 
+int Player::strategy(const int index) const {
+  assert(index >= 0 && index < static_cast<int>(strategies_.size()));
+  return strategies_[index];
+}
+
 int Player::num_strategies() const {
   return strategies_.size();
 }
@@ -34,42 +39,31 @@ const vector<int>& Outcome::payoffs() const {
 }
 
 StrategyProfile::StrategyProfile(const vector<int>& strategies)
-    : player_bits_((sizeof(int) * 8 - 1) / strategies.size()),
-      mask_(pow(2, player_bits_)),
-      id_(0) {
-  for (size_t i = 0; i < strategies.size(); ++i) {
-    assert(strategies[i] < static_cast<int>(mask_));
-    id_ |= strategies[i] << (i * player_bits_);
-  }
-}
+    : strategies_(strategies) {}
+  
+StrategyProfile::StrategyProfile(const std::initializer_list<int>& strategies)
+    : strategies_(strategies) {}
 
-StrategyProfile::StrategyProfile(const int player_id, const int strategy_id,
-                                 const int num_players)
-    : player_bits_((sizeof(int) * 8 - 1) / num_players),
-      mask_(pow(2, player_bits_)),
-      id_(0) {
-  for (int i = 0; i < num_players; ++i) {
-    const int strategy = i == player_id ? strategy_id : 0;
-    assert(strategy < static_cast<int>(mask_));
-    id_ |= strategy << (i * player_bits_);
-  }
-}
-
-StrategyProfile::StrategyProfile(const int id, const int num_players)
-    : player_bits_((sizeof(int) * 8 - 1) / num_players),
-      mask_(pow(2, player_bits_)),
-      id_(id) {}
+StrategyProfile::StrategyProfile(const int num_players,
+                                 const int common_strategy_id)
+    : strategies_(num_players, common_strategy_id) {}
 
 int StrategyProfile::strategy(const int player_id) const {
-  return (id_ >> (player_id * player_bits_)) & mask_;
+  assert(player_id >= 0 && player_id < size());
+  return strategies_[player_id];
 }
 
-int StrategyProfile::id() const {
-  return id_;
+int StrategyProfile::operator[](const int player_id) const {
+  return strategy(player_id);
+}
+
+void StrategyProfile::strategy(const int player_id, const int strategy_id) {
+  assert(player_id >= 0 && player_id < size());
+  strategies_[player_id] = strategy_id;
 }
 
 int StrategyProfile::size() const {
-  return (sizeof(int) * 8 - 1) / player_bits_;
+  return strategies_.size();
 }
 
 string StrategyProfile::str() const {
@@ -109,12 +103,25 @@ int Game::AddOutcome(const Outcome& o) {
 }
 
 void Game::SetPayoff(const StrategyProfile& profile, const int outcome_id) {
-  SetPayoff(profile.id(), outcome_id);
+  SetPayoff(StrategyProfileId(profile), outcome_id);
 }
 
 void Game::SetPayoff(const int sp_id, const int outcome_id) {
   assert(sp_id >= 0 && sp_id < num_strategy_profiles());
   payoff_indices_[sp_id] = outcome_id;
+}
+  
+StrategyProfile Game::CreateProfile(const int sp_id) const {
+  assert(sp_id >= 0 && sp_id < num_strategy_profiles());
+  const int _num_players = num_players();
+  StrategyProfile profile(_num_players, 0);
+  int product = 1;
+  for (int i = 0; i < _num_players; ++i) {
+    const int num_player_strategies = player(i).num_strategies();
+    profile.strategy(i, (sp_id / product) % num_player_strategies);
+    product *= player(i).num_strategies();
+  }
+  return profile;
 }
 
 const Player& Game::player(const int id) const {
@@ -122,14 +129,36 @@ const Player& Game::player(const int id) const {
   return players_[id];
 }
 
-int Game::payoff(const int player_id, const int strategy_id) const {
-  assert(strategy_id >= 0 && strategy_id < player(player_id).num_strategies());
-  StrategyProfile profile(player_id, strategy_id, num_players());
-  return payoff(profile)[player_id];
+const vector<int>& Game::payoff(const StrategyProfile& profile) const {
+  assert(Valid(profile));
+  const int sp_id = StrategyProfileId(profile);
+  const vector<int>& payoffs = outcomes_[payoff_indices_[sp_id]].payoffs();
+  assert(static_cast<int>(payoffs.size()) == profile.size());
+  return payoffs;
 }
 
-const vector<int>& Game::payoff(const StrategyProfile& profile) const {
-  return outcomes_[payoff_indices_[profile.id()]].payoffs();
+int Game::StrategyProfileId(const StrategyProfile& profile) const {
+  const int _num_players = num_players();
+  assert(_num_players == static_cast<int>(profile.size()));
+  int product = 1;
+  int index = 0;
+  for (int i = 0; i < _num_players; ++i) {
+    index += profile[i] * product;
+    product *= player(i).num_strategies();
+  }
+  return index;
+}
+
+bool Game::Valid(const StrategyProfile& profile) const {
+  if (profile.size() != num_players()) {
+    return false;
+  }
+  for (int i = 0; i < num_players(); ++i) {
+    if (profile[i] < 0 || profile[i] >= player(i).num_strategies()) {
+      return false;
+    }
+  }
+  return true;
 }
 
 int Game::num_strategy_profiles() const {

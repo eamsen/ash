@@ -9,41 +9,45 @@ using std::vector;
 namespace ash {
 
 EquilibriaFinder::EquilibriaFinder(const Game& game)
-    : game_(game) {}
+    : game_(game) {
+  Reset();
+}
 
 int EquilibriaFinder::Find() {
-  int total_strategies = 0;
+  Reset();
   const int num_players = game_.num_players();
-  vector<vector<bool> > is_strictly_dominated(num_players);
-  for (int p = 0; p < num_players; ++p) {
-    const Player& player = game_.player(p);
-    is_strictly_dominated[p].resize(player.num_strategies(), false);
-    total_strategies += player.num_strategies();
-  }
-  int num_dominated = 0;
-  while (total_strategies - num_dominated > num_players) {
-    for (int p1 = 0; p1 < num_players; ++p1) {
-      const Player& player1 = game_.player(p1);
-      for (int s1 = 0; s1 < player1.num_strategies(); ++s1) {
-        const vector<int>& payoffs1 = game_.payoffs(p1, s1);
-        for (int s2 = 0; s2 < player1.num_strategies(); ++s2) {
-          const vector<int>& payoffs2 = game_.payoffs(p1, s2);
-          const size_t payoffs_size = payoffs1.size();
-          assert(payoffs_size == payoffs2.size());
-          size_t i = 0;
-          while (i < payoffs_size && payoffs1[i] < payoffs2[i]) {
-            ++i;
-          }
-          if (i == payoffs_size) {
-            // s1 is strictly dominated by s2.
-            is_strictly_dominated[p1][s1] = true;
-            break;
-          }
+  const int num_profiles = game_.num_strategy_profiles();
+  for (int sp = 0; sp < num_profiles; ++sp) {
+    StrategyProfile profile = game_.CreateProfile(sp);
+    const vector<int>& payoff = game_.payoff(profile);
+    bool equilibrium = true;
+    for (int p = 0; p < num_players && equilibrium; ++p) {
+      // Remember the original strategy played.
+      const int org_s = profile.strategy(p);
+      const Player& player = game_.player(p);
+      const int num_strategies = player.num_strategies();
+      for (int s = 0; s < num_strategies && equilibrium; ++s) {
+        // Switch the strategy for one player.
+        profile.strategy(p, s); 
+        const vector<int>& payoff2 = game_.payoff(profile);
+        if (payoff2[p] > payoff[p]) {
+          // Player p increases payoff by switching to strategy s, therefore the
+          // strategy profile is not a Nash equilibrium.
+          equilibrium = false;
         }
       }
+      // Revert the tested strategy back for player p.
+      profile.strategy(p, org_s);
+    }
+    if (equilibrium) {
+      equilibria_.push_back(profile);
     }
   }
-  return 0;
+  return equilibria_.size();
+}
+
+void EquilibriaFinder::Reset() {
+  equilibria_.clear();
 }
 
 const vector<StrategyProfile>& EquilibriaFinder::equilibria() const {

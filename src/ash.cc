@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
   cout << "Found " << num_eq << " Nash equilibria" << (num_eq ? ":" : ".");
   for (auto it = eqs.begin(); it != eqs.end(); ++it) {
     const StrategyProfile& profile = *it;
-    cout << profile.str();
+    cout << " " << profile.str();
   }
   cout << "\n";
   // Lcp lcp = LcpFactory::Create(game);

@@ -1,10 +1,12 @@
 // Copyright 2012 Eugen Sawin <sawine@me73.com>
 #include "./game-factory.h"
 #include <string>
+#include <vector>
 #include "./parser.h"
 #include "./game.h"
 
 using std::string;
+using std::vector;
 
 namespace ash {
 
@@ -27,6 +29,8 @@ Game GameFactory::Create(const parse::StrategicGame& parsed_game) {
   }
   assert(game.num_players() == num_parsed_players);
   // Adding outcomes.
+  Outcome null_outcome("null", vector<int>(game.num_players(), 0));
+  game.AddOutcome(null_outcome);
   const int num_parsed_outcomes = parsed_game.outcomes.size();
   for (int i = 0; i < num_parsed_outcomes; ++i) {
     const parse::Outcome& o = parsed_game.outcomes[i];
@@ -34,7 +38,7 @@ Game GameFactory::Create(const parse::StrategicGame& parsed_game) {
     int o_id = game.AddOutcome(outcome);
     assert(o_id == game.num_outcomes() - 1);
   }
-  assert(game.num_outcomes() == num_parsed_outcomes);
+  assert(game.num_outcomes() == num_parsed_outcomes + 1);
   // Adding strategies and their payoffs.
   const int num_profiles = game.num_strategy_profiles();
   assert(num_profiles == static_cast<int>(parsed_game.payoff_indices.size()));

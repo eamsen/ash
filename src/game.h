@@ -11,6 +11,8 @@ class Player {
  public:
   explicit Player(const std::string& name);
   int AddStrategy(const int s_id);
+
+  int strategy(const int index) const;
   int num_strategies() const;
 
  private:
@@ -28,21 +30,38 @@ class Outcome {
   std::string name_;
 };
 
+// class StrategyProfile {
+//  public:
+//   StrategyProfile(const std::vector<int>& strategies);
+//   StrategyProfile(const int player_id, const int strategy_id,
+//                   const int num_players);
+//   StrategyProfile(const int id, const int num_players);
+//   int operator[](const int player_id) const;
+//   int strategy(const int player_id) const;
+//   void strategy(const int player_id, const int strategy_id);
+//   int id() const;
+//   int size() const;
+//   std::string str() const;
+// 
+//  private:
+//   int player_bits_;
+//   uint32_t mask_;
+//   uint32_t id_;
+// };
+
 class StrategyProfile {
  public:
   StrategyProfile(const std::vector<int>& strategies);
-  StrategyProfile(const int player_id, const int strategy_id,
-                  const int num_players);
-  StrategyProfile(const int id, const int num_players);
+  StrategyProfile(const std::initializer_list<int>& strategies);
+  StrategyProfile(const int num_players, const int common_strategy_id);
   int strategy(const int player_id) const;
-  int id() const;
+  int operator[](const int player_id) const;
+  void strategy(const int player_id, const int strategy_id);
   int size() const;
   std::string str() const;
 
  private:
-  int player_bits_;
-  uint32_t mask_;
-  uint32_t id_;
+  std::vector<int> strategies_;
 };
 
 class Game {
@@ -55,8 +74,8 @@ class Game {
   int AddOutcome(const Outcome& o);
   void SetPayoff(const StrategyProfile& profile, const int outcome_id);
   void SetPayoff(const int sp_id, const int outcome_id);
+  StrategyProfile CreateProfile(const int sp_id) const;
 
-  int payoff(const int player_id, const int strategy_id) const;
   const std::vector<int>& payoff(const StrategyProfile& profile) const;
   const Player& player(const int id) const;
   int num_strategy_profiles() const;
@@ -64,6 +83,9 @@ class Game {
   int num_outcomes() const;
 
  private:
+  int StrategyProfileId(const StrategyProfile& profile) const;
+  bool Valid(const StrategyProfile& profile) const;
+
   std::vector<Player> players_;
   std::vector<Outcome> outcomes_;
   std::vector<int> payoff_indices_;

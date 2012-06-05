@@ -13,6 +13,7 @@ class EquilibriaFinder {
  public:
   EquilibriaFinder(const Game& game);
   int Find();
+  void Reset();
   const std::vector<StrategyProfile>& equilibria() const;
 
  private:
