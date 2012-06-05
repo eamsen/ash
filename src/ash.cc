@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
     const StrategyProfile& profile = *it;
     cout << " " << profile.str();
   }
-  cout << "\n";
+  cout << "\nDuration: " << Clock::DiffStr(finder.duration()) << "\n";
   // Lcp lcp = LcpFactory::Create(game);
   // cout << lcp.str();
   return 0;

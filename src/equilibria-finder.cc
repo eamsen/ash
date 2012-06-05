@@ -5,6 +5,7 @@
 
 using std::string;
 using std::vector;
+using base::Clock;
 
 namespace ash {
 
@@ -15,6 +16,7 @@ EquilibriaFinder::EquilibriaFinder(const Game& game)
 
 int EquilibriaFinder::Find() {
   Reset();
+  Clock beg;
   const int num_players = game_.num_players();
   const int num_profiles = game_.num_strategy_profiles();
   for (int sp = 0; sp < num_profiles; ++sp) {
@@ -43,15 +45,21 @@ int EquilibriaFinder::Find() {
       equilibria_.push_back(profile);
     }
   }
+  duration_ = Clock() - beg;
   return equilibria_.size();
 }
 
 void EquilibriaFinder::Reset() {
   equilibria_.clear();
+  duration_ = 0;
 }
 
 const vector<StrategyProfile>& EquilibriaFinder::equilibria() const {
   return equilibria_;
+}
+
+Clock::Diff EquilibriaFinder::duration() const {
+  return duration_;
 }
 
 }  // namespace ash

@@ -34,8 +34,8 @@ opt: clean compile
 LOG:=perf-results.txt
 perftest: opt
 	@mkdir -p log; rm -f log/$(LOG);
-	@echo "test parameters: LOG="$(LOG)";
-	@for i in project_2_benchmarks/*.xml;\
+	@echo "test parameters: LOG=$(LOG)";
+	@for i in examples/*.nfg;\
 		do echo "testing $$i";\
 		./bin/ash $$i >> log/$(LOG);\
 		echo " " >> log/$(LOG);\

@@ -12,6 +12,14 @@ namespace base {
 class Clock {
  public:
   typedef int64_t Diff;
+
+  enum Type {
+    kProcessCpuTime = CLOCK_PROCESS_CPUTIME_ID,
+    kThreadCpuTime = CLOCK_THREAD_CPUTIME_ID,
+    kRealMonotonic = CLOCK_MONOTONIC,
+    kDefType = kProcessCpuTime,
+  };
+
   static const Diff kSecInMin = 60;
   static const Diff kMilliInSec = 1000;
   static const Diff kMicroInMilli = 1000;
@@ -24,8 +32,11 @@ class Clock {
   static constexpr double kMinInMicro = 1.0 / kMicroInMin;
 
   Clock() {
-    // clock_gettime(CLOCK_MONOTONIC, &time_);
-    clock_gettime(CLOCK_THREAD_CPUTIME_ID, &time_);
+    clock_gettime(kDefType, &time_);
+  }
+
+  Clock(Type type) {
+    clock_gettime(type, &time_);
   }
 
   Diff operator-(const Clock& rhs) const {

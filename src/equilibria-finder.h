@@ -3,6 +3,7 @@
 #define SRC_EQUILIBRIA_FINDER_H_
 
 #include <vector>
+#include "./clock.h"
 
 namespace ash {
 
@@ -15,10 +16,12 @@ class EquilibriaFinder {
   int Find();
   void Reset();
   const std::vector<StrategyProfile>& equilibria() const;
+  base::Clock::Diff duration() const;
 
  private:
   const Game& game_;
   std::vector<StrategyProfile> equilibria_;
+  base::Clock::Diff duration_;
 };
 
 }  // namespace ash
