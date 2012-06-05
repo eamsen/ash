@@ -30,29 +30,10 @@ class Outcome {
   std::string name_;
 };
 
-// class StrategyProfile {
-//  public:
-//   StrategyProfile(const std::vector<int>& strategies);
-//   StrategyProfile(const int player_id, const int strategy_id,
-//                   const int num_players);
-//   StrategyProfile(const int id, const int num_players);
-//   int operator[](const int player_id) const;
-//   int strategy(const int player_id) const;
-//   void strategy(const int player_id, const int strategy_id);
-//   int id() const;
-//   int size() const;
-//   std::string str() const;
-// 
-//  private:
-//   int player_bits_;
-//   uint32_t mask_;
-//   uint32_t id_;
-// };
-
 class StrategyProfile {
  public:
-  StrategyProfile(const std::vector<int>& strategies);
-  StrategyProfile(const std::initializer_list<int>& strategies);
+  StrategyProfile(const std::vector<int>& strategies);  // NOLINT
+  StrategyProfile(const std::initializer_list<int>& strategies);  // NOLINT
   StrategyProfile(const int num_players, const int common_strategy_id);
   int strategy(const int player_id) const;
   int operator[](const int player_id) const;

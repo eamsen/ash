@@ -13,7 +13,7 @@ int Equation::size() const {
 }
 
 string Equation::str() const {
-  stringstream ss; 
+  stringstream ss;
   for (int i = 0; i < size(); ++i) {
     if (i != 0) {
       ss << " ";
@@ -29,7 +29,7 @@ string Equation::str() const {
   else if (type == kLess) { ss << " < "; }
   else if (type == kGreaterEqual) { ss << " >= "; }
   else if (type == kGreater) { ss << " > "; }
-  else { ss << " ? "; }
+  else if (true) { ss << " ? "; }
 
   ss << constant << ";";
   return ss.str();

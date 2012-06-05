@@ -14,7 +14,7 @@ struct Equation {
   Equation(const Type type, const int constant)
       : type(type),
         constant(constant) {}
-  
+
   int AddSummand(const int coefficient, const std::string& variable) {
     assert(variable.size());
     assert(coefficients.size() == variables.size());

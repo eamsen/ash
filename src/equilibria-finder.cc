@@ -28,7 +28,7 @@ int EquilibriaFinder::Find() {
       const int num_strategies = player.num_strategies();
       for (int s = 0; s < num_strategies && equilibrium; ++s) {
         // Switch the strategy for one player.
-        profile.strategy(p, s); 
+        profile.strategy(p, s);
         const vector<int>& payoff2 = game_.payoff(profile);
         if (payoff2[p] > payoff[p]) {
           // Player p increases payoff by switching to strategy s, therefore the

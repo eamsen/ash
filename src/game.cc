@@ -40,7 +40,7 @@ const vector<int>& Outcome::payoffs() const {
 
 StrategyProfile::StrategyProfile(const vector<int>& strategies)
     : strategies_(strategies) {}
-  
+
 StrategyProfile::StrategyProfile(const std::initializer_list<int>& strategies)
     : strategies_(strategies) {}
 
@@ -110,7 +110,7 @@ void Game::SetPayoff(const int sp_id, const int outcome_id) {
   assert(sp_id >= 0 && sp_id < num_strategy_profiles());
   payoff_indices_[sp_id] = outcome_id;
 }
-  
+
 StrategyProfile Game::CreateProfile(const int sp_id) const {
   assert(sp_id >= 0 && sp_id < num_strategy_profiles());
   const int _num_players = num_players();
