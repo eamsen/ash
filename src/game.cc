@@ -79,6 +79,20 @@ string StrategyProfile::str() const {
   return ss.str();
 }
 
+string StrategyProfile::str(const Game& game) const {
+  stringstream ss;
+  ss << "(";
+  for (int i = 0; i < size(); ++i) {
+    if (i != 0) {
+      ss << " ";
+    }
+    const Player& player = game.player(i);
+    ss << game.strategy(player.strategy(strategy(i)));
+  }
+  ss << ")";
+  return ss.str();
+}
+
 const int Game::kInvalidId = -1;
 
 Game::Game(const std::string& name)
@@ -129,6 +143,11 @@ const Player& Game::player(const int id) const {
   return players_[id];
 }
 
+const string& Game::strategy(const int id) const {
+  assert(id >= 0 && id < num_strategies());
+  return strategies_[id];
+}
+
 const vector<int>& Game::payoff(const StrategyProfile& profile) const {
   assert(Valid(profile));
   const int sp_id = StrategyProfileId(profile);
@@ -167,6 +186,10 @@ int Game::num_strategy_profiles() const {
 
 int Game::num_players() const {
   return players_.size();
+}
+
+int Game::num_strategies() const {
+  return strategies_.size();
 }
 
 int Game::num_outcomes() const {

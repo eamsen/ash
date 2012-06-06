@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
+#include <limits>
 #include "./clock.h"
 #include "./profiler.h"
 #include "./parser.h"
@@ -15,6 +16,7 @@
 using std::cout;
 using std::string;
 using std::vector;
+using std::numeric_limits;
 using base::Clock;
 using base::Profiler;
 using ash::parse::Parser;
@@ -26,8 +28,15 @@ using ash::LcpFactory;
 using ash::EquilibriaFinder;
 using ash::StrategyProfile;
 
-// Flag for verbose output.
+// Command-line flag for verbose output.
 DEFINE_bool(verbose, false, "Verbose output");
+// Command-line flag for pure strategy equilibira.
+DEFINE_bool(pure, true, "Find pure strategy Nash equilibria");
+// Command-line flag for mixed strategies equilibira.
+DEFINE_bool(mixed, true, "Find mixed strategies Nash equilibria");
+// Command-line flag for max number of equilibira to be searched for.
+DEFINE_int32(maxequilibria, numeric_limits<int>::max(),
+             "Maximum number of equilibira to be found (min 1)");
 
 // The command-line usage text.
 const string kUsage =  // NOLINT
@@ -35,6 +44,9 @@ const string kUsage =  // NOLINT
          "  $ ash input.nfg\n" +
          "  input.nfg is a strategic game instance" +
          " in the Gambit outcome format";
+
+void FindPureEquilibria(EquilibriaFinder* finder);
+void FindMixedEquilibria(EquilibriaFinder* finder);
 
 int main(int argc, char* argv[]) {
   google::SetUsageMessage(kUsage);
@@ -57,15 +69,39 @@ int main(int argc, char* argv[]) {
   }
   Game game = GameFactory::Create(parsed_game);
   EquilibriaFinder finder(game);
-  const int num_eq = finder.Find();
-  const vector<StrategyProfile> eqs = finder.equilibria();
-  cout << "Found " << num_eq << " Nash equilibria" << (num_eq ? ":" : ".");
-  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
-    const StrategyProfile& profile = *it;
-    cout << " " << profile.str();
+  if (FLAGS_pure) {
+    FindPureEquilibria(&finder);
   }
-  cout << "\nDuration: " << Clock::DiffStr(finder.duration()) << "\n";
+  if (FLAGS_mixed) {
+    FindMixedEquilibria(&finder);
+  }
   // Lcp lcp = LcpFactory::Create(game);
   // cout << lcp.str();
   return 0;
+}
+
+void FindPureEquilibria(EquilibriaFinder* finder) {
+  finder->max_num_equilibria(FLAGS_maxequilibria);
+  const int num_eq = finder->FindPure();
+  const vector<StrategyProfile>& eqs = finder->equilibria();
+  cout << "Found " << num_eq << " pure strategy Nash equilibria"
+       << (num_eq ? ":" : ".");
+  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
+    const StrategyProfile& profile = *it;
+    cout << " " << profile.str(finder->game());
+  }
+  cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";
+}
+
+void FindMixedEquilibria(EquilibriaFinder* finder) {
+  finder->max_num_equilibria(FLAGS_maxequilibria);
+  const int num_eq = finder->FindMixed();
+  const vector<StrategyProfile>& eqs = finder->equilibria();
+  cout << "Found " << num_eq << " mixed strategies Nash equilibria"
+       << (num_eq ? ":" : ".");
+  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
+    const StrategyProfile& profile = *it;
+    cout << " " << profile.str(finder->game());
+  }
+  cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";
 }

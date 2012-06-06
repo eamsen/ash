@@ -1,20 +1,25 @@
 // Copyright 2012 Eugen Sawin <sawine@me73.com>
 #include "./equilibria-finder.h"
 #include <cassert>
+#include <limits>
+#include <algorithm>
 #include "./game.h"
 
 using std::string;
 using std::vector;
+using std::numeric_limits;
+using std::max;
 using base::Clock;
 
 namespace ash {
 
 EquilibriaFinder::EquilibriaFinder(const Game& game)
-    : game_(game) {
+    : game_(game),
+      max_num_equilibria_(numeric_limits<int>::max()) {
   Reset();
 }
 
-int EquilibriaFinder::Find() {
+int EquilibriaFinder::FindPure() {
   Reset();
   Clock beg;
   const int num_players = game_.num_players();
@@ -43,15 +48,35 @@ int EquilibriaFinder::Find() {
     }
     if (equilibrium) {
       equilibria_.push_back(profile);
+      if (equilibria_.size() >= max_num_equilibria_) {
+        break;
+      }
     }
   }
   duration_ = Clock() - beg;
   return equilibria_.size();
 }
 
+int EquilibriaFinder::FindMixed() {
+  Reset();
+  return 0;
+}
+
 void EquilibriaFinder::Reset() {
   equilibria_.clear();
   duration_ = 0;
+}
+
+void EquilibriaFinder::max_num_equilibria(const int max_num) {
+  max_num_equilibria_ = max(0, max_num);
+}
+
+int EquilibriaFinder::max_num_equilibria() const {
+  return max_num_equilibria_;
+}
+
+const Game& EquilibriaFinder::game() const {
+  return game_;
 }
 
 const vector<StrategyProfile>& EquilibriaFinder::equilibria() const {

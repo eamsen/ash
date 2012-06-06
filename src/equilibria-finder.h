@@ -13,14 +13,19 @@ class StrategyProfile;
 class EquilibriaFinder {
  public:
   explicit EquilibriaFinder(const Game& game);
-  int Find();
+  int FindPure();
+  int FindMixed();
   void Reset();
+  void max_num_equilibria(const int max_num);
+  int max_num_equilibria() const;
+  const Game& game() const;
   const std::vector<StrategyProfile>& equilibria() const;
   base::Clock::Diff duration() const;
 
  private:
   const Game& game_;
   std::vector<StrategyProfile> equilibria_;
+  size_t max_num_equilibria_;
   base::Clock::Diff duration_;
 };
 

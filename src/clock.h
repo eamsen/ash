@@ -80,9 +80,9 @@ class Clock {
   // Returns the system time resolution.
   // Remark: Usually returns 0µs (1ns), this is however a bad promise and does
   // not reflect the (dynamic) underlying clock event resolution.
-  static Diff Resolution() {
+  static Diff Resolution(Type type) {
     timespec res;
-    clock_getres(type_, &res);
+    clock_getres(type, &res);
     return res.tv_sec * kMicroInSec + res.tv_nsec * kMicroInNano;
   }
 

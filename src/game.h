@@ -30,6 +30,8 @@ class Outcome {
   std::string name_;
 };
 
+class Game;
+
 class StrategyProfile {
  public:
   StrategyProfile(const std::vector<int>& strategies);  // NOLINT
@@ -40,6 +42,7 @@ class StrategyProfile {
   void strategy(const int player_id, const int strategy_id);
   int size() const;
   std::string str() const;
+  std::string str(const Game& game) const;
 
  private:
   std::vector<int> strategies_;
@@ -59,8 +62,10 @@ class Game {
 
   const std::vector<int>& payoff(const StrategyProfile& profile) const;
   const Player& player(const int id) const;
+  const std::string& strategy(const int id) const;
   int num_strategy_profiles() const;
   int num_players() const;
+  int num_strategies() const;
   int num_outcomes() const;
 
  private:
