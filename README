@@ -1,4 +1,4 @@
-Ash Nash Equilibria Finder
+Ash - Nash Equilibria Finder
 by Eugen Sawin <sawine@me73.com>
 
 
@@ -21,7 +21,7 @@ Dependencies
 
 Building gflags
 ---------------
-  Before building ace, you need to build gflags locally once:
+  Before building Ash, you need to build gflags locally once:
   $ make gflags
 
   Alternatively you can build all dependencies at once:
@@ -73,5 +73,7 @@ Checking style
 
 Using Ash
 ---------
+  $ ash game.nfg
+
   To show the full usage and flags help use:
   $ ash -help
