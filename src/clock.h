@@ -9,10 +9,13 @@
 
 namespace base {
 
+// High-resolution clock used for performance measuring.
 class Clock {
  public:
+  // Type for time differences.
   typedef int64_t Diff;
 
+  // Clock types used to switch between process, thread and wallclock time.
   enum Type {
     kProcessCpuTime = CLOCK_PROCESS_CPUTIME_ID,
     kThreadCpuTime = CLOCK_THREAD_CPUTIME_ID,
@@ -20,6 +23,7 @@ class Clock {
     kDefType = kProcessCpuTime,
   };
 
+  // Constants used to convert between different time units.
   static const Diff kSecInMin = 60;
   static const Diff kMilliInSec = 1000;
   static const Diff kMicroInMilli = 1000;
@@ -31,14 +35,18 @@ class Clock {
   static constexpr double kSecInMicro = 1.0 / kMicroInSec;
   static constexpr double kMinInMicro = 1.0 / kMicroInMin;
 
-  Clock() {
-    clock_gettime(kDefType, &time_);
+  // Initialised the clock with its default type and the current clock time.
+  Clock() : type_(kDefType) {
+    clock_gettime(type_, &time_);
   }
 
-  Clock(Type type) {
-    clock_gettime(type, &time_);
+  // Initialised the clock with given type and the current clock time.
+  Clock(Type type) : type_(type) {
+    clock_gettime(type_, &time_);
   }
 
+  // Returns the time difference in microseconds between this and the given
+  // clock's time.
   Diff operator-(const Clock& rhs) const {
     return (time_.tv_sec - rhs.time_.tv_sec) * kMicroInSec +
            (time_.tv_nsec - rhs.time_.tv_nsec) * kMicroInNano;
@@ -74,16 +82,15 @@ class Clock {
   // not reflect the (dynamic) underlying clock event resolution.
   static Diff Resolution() {
     timespec res;
-    clock_getres(CLOCK_MONOTONIC, &res);
+    clock_getres(type_, &res);
     return res.tv_sec * kMicroInSec + res.tv_nsec * kMicroInNano;
   }
 
-
  private:
+  Type type_;
   timespec time_;
 };
 
 }  // namespace base
-
 #endif  // SRC_CLOCK_H_
 
