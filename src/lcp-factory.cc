@@ -72,9 +72,9 @@ Lcp LcpFactory::Create(const Game& game) {
     lcp.AddEquation(e);
     player_vars[p].swap(vars);
   }
-  Equation e(Equation::kEqual, 0);
-  e.AddSummand(1, "null");
-  lcp.AddEquation(e);
+  // Equation e(Equation::kEqual, 0);
+  // e.AddSummand(1, "null");
+  // lcp.AddEquation(e);
   return lcp;
 }
 

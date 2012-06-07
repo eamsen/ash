@@ -73,9 +73,11 @@ int Lcp::num_complementary() const {
 
 string Lcp::str() const {
   stringstream ss;
+  ss << "min: ;\n";
   for (auto it = equations_.begin(); it != equations_.end(); ++it) {
     ss << it->str() << "\n";
   }
+  ss << "int null;\n";
   assert(num_complementary() % 2 == 0);
   for (auto it = compl_equations_.begin(); it != compl_equations_.end(); ++it) {
     ss << it->str() << "  v  ";
