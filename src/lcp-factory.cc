@@ -29,6 +29,7 @@ string CreatePlayerPayoffVar(const int player_id) {
 
 Lcp LcpFactory::Create(const Game& game) {
   Lcp lcp;
+  const bool zero_sum_game = game.zero_sum();
   const int num_players = game.num_players();
   vector<vector<string> > player_vars(num_players);
   for (int p = 0; p < num_players; ++p) {
@@ -61,9 +62,11 @@ Lcp LcpFactory::Create(const Game& game) {
         }
       }
       lcp.AddEquation(e2);
-      e.type(Equation::kEqual);
-      e2.type(Equation::kEqual);
-      lcp.AddComplEquations(e, e2);
+      if (!zero_sum_game) {
+        e.type(Equation::kEqual);
+        e2.type(Equation::kEqual);
+        lcp.AddComplEquations(e, e2);
+      }
     }
     Equation e(Equation::kEqual, 1);
     for (auto it = vars.begin(), end = vars.end(); it != end; ++it) {

@@ -68,6 +68,7 @@ class Game {
   int num_strategies() const;
   int num_strategies(const int player_id) const;
   int num_outcomes() const;
+  bool zero_sum() const;
 
  private:
   int StrategyProfileId(const StrategyProfile& profile) const;
@@ -78,6 +79,7 @@ class Game {
   std::vector<int> payoff_indices_;
   std::vector<std::string> strategies_;
   std::string name_;
+  bool zero_sum_;
 };
 
 }  // namespace ash

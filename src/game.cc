@@ -4,12 +4,14 @@
 #include <cmath>
 #include <sstream>
 #include <algorithm>
+#include <numeric>
 
 using std::string;
 using std::stringstream;
 using std::vector;
 using std::max;
 using std::pow;
+using std::accumulate;
 
 namespace ash {
 
@@ -96,7 +98,8 @@ string StrategyProfile::str(const Game& game) const {
 const int Game::kInvalidId = -1;
 
 Game::Game(const std::string& name)
-    : name_(name) {}
+    : name_(name),
+      zero_sum_(true) {}
 
 int Game::AddPlayer(const Player& p) {
   const int space = max(static_cast<size_t>(p.num_strategies()),
@@ -112,6 +115,9 @@ int Game::AddStrategy(const std::string& name) {
 }
 
 int Game::AddOutcome(const Outcome& o) {
+  if (accumulate(o.payoffs().begin(), o.payoffs().end(), 0) != 0) {
+    zero_sum_ = false;
+  }
   outcomes_.push_back(o);
   return outcomes_.size() - 1;
 }
@@ -198,6 +204,10 @@ int Game::num_strategies(const int player_id) const {
 
 int Game::num_outcomes() const {
   return outcomes_.size();
+}
+
+bool Game::zero_sum() const {
+  return zero_sum_;
 }
 
 }  // namespace ash

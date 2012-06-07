@@ -70,15 +70,6 @@ int EquilibriaFinder::FindMixed() {
   vector<uint32_t> supports(num_players, 1u); 
   supports[0] = 0u;  // We use this only to kick off the permutations.
   while (NextSupports(&supports)) {
-    // cout << "(";
-    // for (auto it = supports.begin(); it != supports.end(); ++it) {
-    //   if (it != supports.begin()) {
-    //     cout << " ";
-    //   }
-    //   cout << *it;
-    // }
-    // cout << ")";
-
   }
   duration_ = Clock() - beg;
   return 0;

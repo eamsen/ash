@@ -72,12 +72,18 @@ int Lcp::num_complementary() const {
 }
 
 string Lcp::str() const {
+  const bool zero_sum = !num_complementary();
   stringstream ss;
-  ss << "min: ;\n";
+  if (zero_sum) {
+    // Find the min-maximiser.
+    ss << "min: A;\n";
+  } else {
+    // Non-zero-sum games do not need an objective function.
+    ss << "min: ;\n";
+  }
   for (auto it = equations_.begin(); it != equations_.end(); ++it) {
     ss << it->str() << "\n";
   }
-  ss << "int null;\n";
   assert(num_complementary() % 2 == 0);
   for (auto it = compl_equations_.begin(); it != compl_equations_.end(); ++it) {
     ss << it->str() << "  v  ";
