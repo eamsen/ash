@@ -73,10 +73,10 @@ int main(int argc, char* argv[]) {
     FindPureEquilibria(&finder);
   }
   if (FLAGS_mixed) {
+    Lcp lcp = LcpFactory::Create(game);
+    cout << lcp.str();
     FindMixedEquilibria(&finder);
   }
-  // Lcp lcp = LcpFactory::Create(game);
-  // cout << lcp.str();
   return 0;
 }
 
@@ -103,5 +103,6 @@ void FindMixedEquilibria(EquilibriaFinder* finder) {
     const StrategyProfile& profile = *it;
     cout << " " << profile.str(finder->game());
   }
+  cout << "\nLCP duration: " << Clock::DiffStr(finder->lcp_duration());
   cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";
 }

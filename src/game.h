@@ -66,6 +66,7 @@ class Game {
   int num_strategy_profiles() const;
   int num_players() const;
   int num_strategies() const;
+  int num_strategies(const int player_id) const;
   int num_outcomes() const;
 
  private:

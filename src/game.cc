@@ -192,6 +192,10 @@ int Game::num_strategies() const {
   return strategies_.size();
 }
 
+int Game::num_strategies(const int player_id) const {
+  return player(player_id).num_strategies();
+}
+
 int Game::num_outcomes() const {
   return outcomes_.size();
 }

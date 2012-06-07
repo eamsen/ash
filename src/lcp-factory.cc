@@ -13,48 +13,66 @@ using std::stringstream;
 
 namespace ash {
 
+string CreatePlayerMixedVar(const int player_id, const int strategy_id) {
+  assert(player_id <= 'z' - static_cast<int>('a'));
+  stringstream ss;
+  ss << char('a' + player_id) << strategy_id;
+  return ss.str();
+}
+
+string CreatePlayerPayoffVar(const int player_id) {
+  assert(player_id <= 'Z' - static_cast<int>('A'));
+  stringstream ss;
+  ss << char('A' + player_id);
+  return ss.str();
+}
+
 Lcp LcpFactory::Create(const Game& game) {
   Lcp lcp;
-  vector<vector<string> > player_vars(game.num_players());
-  for (int p = 0; p < game.num_players(); ++p) {
+  const int num_players = game.num_players();
+  vector<vector<string> > player_vars(num_players);
+  for (int p = 0; p < num_players; ++p) {
     const Player& player = game.player(p);
-    assert(p <= 'z' - static_cast<int>('a'));
-    string player_var;
-    player_var += 'a' + p;
     vector<string> vars;
-    for (int s = 0; s < player.num_strategies(); ++s) {
-      stringstream var;
-      var << player_var << s;
+    const int num_player_strategies = player.num_strategies();
+    for (int s = 0; s < num_player_strategies; ++s) {
+      const string var = CreatePlayerMixedVar(p, s);
       Equation e(Equation::kGreaterEqual, 0);
-      e.AddSummand(1, var.str());
-      lcp.AddEquation(e);
-      vars.push_back(var.str());
+      e.AddSummand(1, var);
+      const int e_id = lcp.AddEquation(e);
+      vars.push_back(var);
+
+      const string var2 = CreatePlayerPayoffVar(p);
+      Equation e2(Equation::kGreaterEqual, 0);
+      e2.AddSummand(1, var2);
+      const int num_strategy_profiles = game.num_strategy_profiles();
+      for (int sp = 0; sp < num_strategy_profiles; ++sp) {
+        const StrategyProfile profile = game.CreateProfile(sp);
+        if (profile[p] != s) {
+          continue;
+        }
+        const int p_payoff = game.payoff(profile)[p];
+        for (int p2 = 0; p2 < num_players; ++p2) {
+          if (p2 == p) {
+            continue;
+          }
+          const string var3 = CreatePlayerMixedVar(p2, profile[p2]);
+          e2.AddSummand(-1 * p_payoff, var3);
+        }
+        const int e2_id = lcp.AddEquation(e2);
+        lcp.SetComplementary(e_id, e2_id);
+      }
     }
     Equation e(Equation::kEqual, 1);
-    for (auto it = vars.begin(); it != vars.end(); ++it) {
+    for (auto it = vars.begin(), end = vars.end(); it != end; ++it) {
       e.AddSummand(1, *it);
     }
     lcp.AddEquation(e);
     player_vars[p].swap(vars);
   }
-
-  for (int p = 0; p < game.num_players(); ++p) {
-    const Player& player = game.player(p);
-    for (int s = 0; s < player.num_strategies(); ++s) {
-      vector<int> profile(game.num_players(), 0);
-      profile[p] = s;
-      for (int p2 = 0; p2 < game.num_players(); ++p2) {
-        if (p2 == p) {
-          continue;
-        }
-        const Player& player2 = game.player(p2);
-        for (int s2 = 0; s2 < player2.num_strategies(); ++s2) {
-          profile[p2] = s2;
-        }
-        profile[p2] = 0;
-      }
-    }
-  }
+  Equation e(Equation::kEqual, 0);
+  e.AddSummand(1, "null");
+  lcp.AddEquation(e);
   return lcp;
 }
 

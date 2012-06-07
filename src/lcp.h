@@ -36,10 +36,13 @@ struct Equation {
 class Lcp {
  public:
   int AddEquation(const Equation& e);
+  int SetComplementary(const int eq1_id, const int eq2_id);
+  int num_linear() const;
   std::string str() const;
 
  private:
   std::vector<Equation> equations_;
+  std::vector<int> complementary_;
 };
 
 }  // namespace ash
