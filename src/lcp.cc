@@ -7,9 +7,25 @@ using std::stringstream;
 
 namespace ash {
 
+Equation::Equation(const Type type, const int constant)
+    : type_(type),
+      constant_(constant) {}
+
+int Equation::AddSummand(const int coefficient, const std::string& variable) {
+  assert(variable.size());
+  assert(coefficients_.size() == variables_.size());
+  coefficients_.push_back(coefficient);
+  variables_.push_back(variable);
+  return variables_.size() - 1;
+}
+
+void Equation::type(const Type type) {
+  type_ = type;
+}
+
 int Equation::size() const {
-  assert(variables.size() == coefficients.size());
-  return variables.size();
+  assert(variables_.size() == coefficients_.size());
+  return variables_.size();
 }
 
 string Equation::str() const {
@@ -18,21 +34,21 @@ string Equation::str() const {
     if (i != 0) {
       ss << " ";
     }
-    if (coefficients[i] >= 0) {
+    if (coefficients_[i] >= 0) {
       ss << "+";
     }
-    if (coefficients[i] != 1) {
-      ss << coefficients[i] << "*";
+    if (coefficients_[i] != 1) {
+      ss << coefficients_[i] << "*";
     }
-    ss << variables[i];
+    ss << variables_[i];
   }
-  if (type == kEqual) { ss << " = "; }
-  else if (type == kLessEqual) { ss << " <= "; }
-  else if (type == kLess) { ss << " < "; }
-  else if (type == kGreaterEqual) { ss << " >= "; }
-  else if (type == kGreater) { ss << " > "; }
+  if (type_ == kEqual) { ss << " = "; }
+  else if (type_ == kLessEqual) { ss << " <= "; }
+  else if (type_ == kLess) { ss << " < "; }
+  else if (type_ == kGreaterEqual) { ss << " >= "; }
+  else if (type_ == kGreater) { ss << " > "; }
   else if (true) { ss << " ? "; }
-  ss << constant << ";";
+  ss << constant_ << ";";
   return ss.str();
 }
 
@@ -41,16 +57,18 @@ int Lcp::AddEquation(const Equation& e) {
   return equations_.size() - 1;
 }
 
-int Lcp::SetComplementary(const int eq_id1, const int eq_id2) {
-  assert(eq_id1 >= 0 && eq_id1 < num_linear());
-  assert(eq_id2 >= 0 && eq_id2 < num_linear());
-  complementary_.push_back(eq_id1);
-  complementary_.push_back(eq_id2);
-  return complementary_.size() - 2;
+int Lcp::AddComplEquations(const Equation& e1, const Equation& e2) {
+  compl_equations_.push_back(e1);
+  compl_equations_.push_back(e2);
+  return compl_equations_.size() - 2;
 }
 
 int Lcp::num_linear() const {
   return equations_.size();
+}
+
+int Lcp::num_complementary() const {
+  return compl_equations_.size() / 2;
 }
 
 string Lcp::str() const {
@@ -58,11 +76,10 @@ string Lcp::str() const {
   for (auto it = equations_.begin(); it != equations_.end(); ++it) {
     ss << it->str() << "\n";
   }
-  const int num_compl = complementary_.size();
-  assert(num_compl % 2 == 0);
-  for (int i = 0; i < num_compl; ++i) {
-    ss << equations_[complementary_[i]].str();
-    ss << "  v  " << equations_[complementary_[++i]].str() << "\n";
+  assert(num_complementary() % 2 == 0);
+  for (auto it = compl_equations_.begin(); it != compl_equations_.end(); ++it) {
+    ss << it->str() << "  v  ";
+    ss << (++it)->str() << "\n";
   }
   return ss.str();
 }

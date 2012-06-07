@@ -39,7 +39,7 @@ Lcp LcpFactory::Create(const Game& game) {
       const string var = CreatePlayerMixedVar(p, s);
       Equation e(Equation::kGreaterEqual, 0);
       e.AddSummand(1, var);
-      const int e_id = lcp.AddEquation(e);
+      lcp.AddEquation(e);
       vars.push_back(var);
 
       const string var2 = CreatePlayerPayoffVar(p);
@@ -59,8 +59,10 @@ Lcp LcpFactory::Create(const Game& game) {
           const string var3 = CreatePlayerMixedVar(p2, profile[p2]);
           e2.AddSummand(-1 * p_payoff, var3);
         }
-        const int e2_id = lcp.AddEquation(e2);
-        lcp.SetComplementary(e_id, e2_id);
+        lcp.AddEquation(e2);
+        e.type(Equation::kEqual);
+        e2.type(Equation::kEqual);
+        lcp.AddComplEquations(e, e2);
       }
     }
     Equation e(Equation::kEqual, 1);
