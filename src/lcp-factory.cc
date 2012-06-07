@@ -59,11 +59,11 @@ Lcp LcpFactory::Create(const Game& game) {
           const string var3 = CreatePlayerMixedVar(p2, profile[p2]);
           e2.AddSummand(-1 * p_payoff, var3);
         }
-        lcp.AddEquation(e2);
-        e.type(Equation::kEqual);
-        e2.type(Equation::kEqual);
-        lcp.AddComplEquations(e, e2);
       }
+      lcp.AddEquation(e2);
+      e.type(Equation::kEqual);
+      e2.type(Equation::kEqual);
+      lcp.AddComplEquations(e, e2);
     }
     Equation e(Equation::kEqual, 1);
     for (auto it = vars.begin(), end = vars.end(); it != end; ++it) {
