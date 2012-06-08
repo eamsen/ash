@@ -13,7 +13,7 @@ class Equation {
   enum Type { kEqual, kLessEqual, kLess, kGreaterEqual, kGreater };
 
   Equation(const Type type, const int constant);
-  int AddSummand(const int coefficient, const std::string& variable);
+  int AddSummand(const int coefficient, const int var_id);
   void type(const Type type);
   std::string str() const;
   int size() const;
@@ -22,7 +22,7 @@ class Equation {
   Type type_;
   int constant_;
   std::vector<int> coefficients_;
-  std::vector<std::string> variables_;
+  std::vector<int> variables_;
 };
 
 class Objective : public Equation {
@@ -41,6 +41,7 @@ class Lcp {
   static const int kInvalidId;
 
   Lcp();
+  int AddVariable(const std::string& var);
   int AddEquation(const Equation& e);
   int AddComplEquations(const Equation& e1, const Equation& e2);
   int AddObjective(const Objective& o);
@@ -51,9 +52,11 @@ class Lcp {
   int num_linear() const;
   int num_complementary() const;
   int num_objectives() const;
+  int num_variables() const;
   std::string str() const;
 
  private:
+  std::vector<std::string> variables_;
   std::vector<Equation> equations_;
   std::vector<Equation> compl_equations_;
   std::vector<bool> compl_active_;

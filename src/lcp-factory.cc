@@ -1,6 +1,5 @@
 // Copyright 2012 Eugen Sawin <sawine@me73.com>
 #include "./lcp-factory.h"
-#include <lpsolve/lp_lib.h>
 #include <string>
 #include <vector>
 #include <sstream>
@@ -36,27 +35,29 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
   const bool zero_sum_game = game.zero_sum();
   const int num_players = game.num_players();
   vector<vector<int> > compl_map(num_players);
-  vector<vector<string> > player_vars(num_players);
+  vector<vector<int> > player_vars(num_players);
   for (int p = 0; p < num_players; ++p) {
     const Player& player = game.player(p);
-    const string payoff_var = CreatePlayerPayoffVar(p);
+    const int payoff_var_id = lcp.AddVariable(CreatePlayerPayoffVar(p));
     if (zero_sum_game) {
       Objective obj(Objective::kMin);
-      obj.AddSummand(1, payoff_var);
+      obj.AddSummand(1, payoff_var_id);
       const int obj_id = lcp.AddObjective(obj);
       assert(obj_id == p);
     }
-    vector<string> vars;
     const int num_player_strategies = player.num_strategies();
     compl_map[p].resize(num_player_strategies, Game::kInvalidId);
+    player_vars[p].resize(num_player_strategies, Game::kInvalidId);
     for (int s = 0; s < num_player_strategies; ++s) {
-      const string var = CreatePlayerMixedVar(p, s);
+      if (player_vars[p][s] == Game::kInvalidId) {
+        player_vars[p][s] = lcp.AddVariable(CreatePlayerMixedVar(p, s));
+      }
+      const int var_id = player_vars[p][s];
       Equation e(Equation::kGreaterEqual, 0);
-      e.AddSummand(1, var);
+      e.AddSummand(1, var_id);
       lcp.AddEquation(e);
-      vars.push_back(var);
       Equation e2(Equation::kGreaterEqual, 0);
-      e2.AddSummand(1, payoff_var);
+      e2.AddSummand(1, payoff_var_id);
       const int num_strategy_profiles = game.num_strategy_profiles();
       for (int sp = 0; sp < num_strategy_profiles; ++sp) {
         const StrategyProfile profile = game.CreateProfile(sp);
@@ -68,8 +69,14 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
           if (p2 == p) {
             continue;
           }
-          const string var3 = CreatePlayerMixedVar(p2, profile[p2]);
-          e2.AddSummand(-1 * p_payoff, var3);
+          if (player_vars[p2].empty()) {
+            player_vars[p2].resize(game.num_strategies(p2), Game::kInvalidId);
+          }
+          if (player_vars[p2][profile[p2]] == Game::kInvalidId) {
+            player_vars[p2][profile[p2]] =
+              lcp.AddVariable(CreatePlayerMixedVar(p2, profile[p2]));
+          }
+          e2.AddSummand(-1 * p_payoff, player_vars[p2][profile[p2]]);
         }
       }
       lcp.AddEquation(e2);
@@ -82,11 +89,12 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
       }
     }
     Equation e(Equation::kEqual, 1);
-    for (auto it = vars.begin(), end = vars.end(); it != end; ++it) {
+    for (auto it = player_vars[p].begin(), end = player_vars[p].end();
+         it != end; ++it) {
       e.AddSummand(1, *it);
     }
     lcp.AddEquation(e);
-    player_vars[p].swap(vars);
+    // player_vars[p].swap(vars);
   }
   if (_compl_map) {
     compl_map.swap(*_compl_map);

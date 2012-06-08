@@ -7,6 +7,7 @@
 #include "./game.h"
 #include "./lcp.h"
 #include "./lcp-factory.h"
+#include "./lp-solver.h"
 
 using std::string;
 using std::vector;
@@ -69,14 +70,20 @@ int EquilibriaFinder::FindMixed() {
   lcp_duration_ = Clock() - beg;
   const int num_players = game_.num_players();
   assert(static_cast<int>(compl_map.size()) == num_players);
-  vector<uint32_t> supports(num_players, 1u); 
-  supports[0] = 0u;  // We use this only to kick off the permutations.
   if (game_.zero_sum()) {
     for (int p = 0; p < num_players; ++p) {
       lcp.SelectObjective(p);
-      cout << lcp.str() << "\n";
+      cout << lcp.str();
+      LpSolver lp_solver(lcp);
+      if (lp_solver.Solve()) {
+        cout << "solved\n\n";
+      } else {
+        cout << "not solved\n\n";
+      }
     }
   } else {
+    vector<uint32_t> supports(num_players, 1u); 
+    supports[0] = 0u;  // We use this only to kick off the permutations.
     while (NextSupports(&supports)) {
       for (int p = 0; p < num_players; ++p) {
         const int num_strategies = game_.num_strategies(p);
@@ -86,12 +93,19 @@ int EquilibriaFinder::FindMixed() {
           if (compl_fun_id != Game::kInvalidId) {
             const uint32_t mask = s + 1u; 
             const int supported = (supports[p] & mask) != 0u;
-            // cout << char(p + 'a') << s << " : " << supported << "\n";
-            lcp.SelectEquation(compl_fun_id, supported, !supported);
+            cout << char(p + 'a') << s << " : " << compl_fun_id << " is "
+                 << supported << "\n";
+            lcp.SelectEquation(compl_fun_id, !supported, supported);
           }
         }
       }
-      cout << lcp.str() << "\n";
+      cout << lcp.str();
+      LpSolver lp_solver(lcp);
+      if (lp_solver.Solve()) {
+        cout << "solved\n\n";
+      } else {
+        cout << "not solved\n\n";
+      }
     }
   }
   duration_ = Clock() - beg;
