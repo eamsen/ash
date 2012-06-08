@@ -52,6 +52,37 @@ string Equation::str() const {
   return ss.str();
 }
 
+Objective::Objective(const Type type)
+    : Equation(kEqual, 0),
+      type_(type) {}
+
+string Objective::str() const {
+  stringstream ss;
+  if (type_ == kMin) {
+    ss << "min: ";
+  } else {
+    ss << "max: ";
+  }
+  for (int i = 0; i < size(); ++i) {
+    if (i != 0) {
+      ss << " ";
+    }
+    if (coefficients_[i] >= 0) {
+      ss << "+";
+    }
+    if (coefficients_[i] != 1) {
+      ss << coefficients_[i] << "*";
+    }
+    ss << variables_[i];
+  }
+  ss << ";";
+  return ss.str();
+}
+
+const int Lcp::kInvalidId = -1;
+
+Lcp::Lcp() : active_objective_(kInvalidId) {}
+
 int Lcp::AddEquation(const Equation& e) {
   equations_.push_back(e);
   return equations_.size() - 1;
@@ -60,7 +91,34 @@ int Lcp::AddEquation(const Equation& e) {
 int Lcp::AddComplEquations(const Equation& e1, const Equation& e2) {
   compl_equations_.push_back(e1);
   compl_equations_.push_back(e2);
+  compl_active_.push_back(true);
+  compl_active_.push_back(true);
   return compl_equations_.size() - 2;
+}
+  
+void Lcp::SelectEquation(const int id, const bool e1, const bool e2) {
+  assert(id >= 0 && id < num_complementary());
+  compl_active_[id * 2] = e1;
+  compl_active_[id * 2 + 1] = e2;
+}
+
+int Lcp::AddObjective(const Objective& o) {
+  objectives_.push_back(o);
+  return objectives_.size() - 1;
+}
+
+void Lcp::SelectObjective(const int id) {
+  assert(id >= 0 && id < num_objectives());
+  active_objective_ = id;
+}
+
+void Lcp::UnselectObjective() {
+  active_objective_ = kInvalidId;
+}
+
+const Objective& Lcp::objective(const int id) const {
+  assert(id >= 0 && id < num_objectives());
+  return objectives_[id];
 }
 
 int Lcp::num_linear() const {
@@ -71,23 +129,32 @@ int Lcp::num_complementary() const {
   return compl_equations_.size() / 2;
 }
 
+int Lcp::num_objectives() const {
+  return objectives_.size();
+}
+
 string Lcp::str() const {
-  const bool zero_sum = !num_complementary();
   stringstream ss;
-  if (zero_sum) {
-    // Find the min-maximiser.
-    ss << "min: A;\n";
+  if (active_objective_ != kInvalidId) {
+    ss << objective(active_objective_).str() << "\n";
   } else {
-    // Non-zero-sum games do not need an objective function.
     ss << "min: ;\n";
   }
   for (auto it = equations_.begin(); it != equations_.end(); ++it) {
     ss << it->str() << "\n";
   }
-  assert(num_complementary() % 2 == 0);
-  for (auto it = compl_equations_.begin(); it != compl_equations_.end(); ++it) {
-    ss << it->str() << "  v  ";
-    ss << (++it)->str() << "\n";
+  assert(compl_equations_.size() % 2 == 0);
+  for (size_t i = 0; i < compl_equations_.size(); ++i) {
+    if (compl_active_[i]) {
+      ss << compl_equations_[i].str();
+    }
+    if (compl_active_[i++] && compl_active_[i]) {
+      ss << "  v  ";
+    }
+    if (compl_active_[i]) {
+      ss << compl_equations_[i].str();
+    }
+    ss << "\n";
   }
   return ss.str();
 }

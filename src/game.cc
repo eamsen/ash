@@ -115,9 +115,8 @@ int Game::AddStrategy(const std::string& name) {
 }
 
 int Game::AddOutcome(const Outcome& o) {
-  if (accumulate(o.payoffs().begin(), o.payoffs().end(), 0) != 0) {
-    zero_sum_ = false;
-  }
+  zero_sum_ = zero_sum_ &&
+              accumulate(o.payoffs().begin(), o.payoffs().end(), 0) == 0;
   outcomes_.push_back(o);
   return outcomes_.size() - 1;
 }

@@ -64,12 +64,35 @@ int EquilibriaFinder::FindMixed() {
   using std::cout;
   Reset();
   Clock beg;
-  Lcp lcp = LcpFactory::Create(game());
+  vector<vector<int> > compl_map;
+  Lcp lcp = LcpFactory::Create(game_, &compl_map);
   lcp_duration_ = Clock() - beg;
   const int num_players = game_.num_players();
+  assert(static_cast<int>(compl_map.size()) == num_players);
   vector<uint32_t> supports(num_players, 1u); 
   supports[0] = 0u;  // We use this only to kick off the permutations.
-  while (NextSupports(&supports)) {
+  if (game_.zero_sum()) {
+    for (int p = 0; p < num_players; ++p) {
+      lcp.SelectObjective(p);
+      cout << lcp.str() << "\n";
+    }
+  } else {
+    while (NextSupports(&supports)) {
+      for (int p = 0; p < num_players; ++p) {
+        const int num_strategies = game_.num_strategies(p);
+        assert(static_cast<int>(compl_map[p].size()) == num_strategies);
+        for (int s = 0; s < num_strategies; ++s) { 
+          const int compl_fun_id = compl_map[p][s];
+          if (compl_fun_id != Game::kInvalidId) {
+            const uint32_t mask = s + 1u; 
+            const int supported = (supports[p] & mask) != 0u;
+            // cout << char(p + 'a') << s << " : " << supported << "\n";
+            lcp.SelectEquation(compl_fun_id, supported, !supported);
+          }
+        }
+      }
+      cout << lcp.str() << "\n";
+    }
   }
   duration_ = Clock() - beg;
   return 0;

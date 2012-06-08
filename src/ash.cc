@@ -73,8 +73,6 @@ int main(int argc, char* argv[]) {
     FindPureEquilibria(&finder);
   }
   if (FLAGS_mixed) {
-    Lcp lcp = LcpFactory::Create(game);
-    cout << lcp.str();
     FindMixedEquilibria(&finder);
   }
   return 0;

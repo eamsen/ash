@@ -28,24 +28,35 @@ string CreatePlayerPayoffVar(const int player_id) {
 }
 
 Lcp LcpFactory::Create(const Game& game) {
+  return Create(game, NULL);
+}
+
+Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
   Lcp lcp;
   const bool zero_sum_game = game.zero_sum();
   const int num_players = game.num_players();
+  vector<vector<int> > compl_map(num_players);
   vector<vector<string> > player_vars(num_players);
   for (int p = 0; p < num_players; ++p) {
     const Player& player = game.player(p);
+    const string payoff_var = CreatePlayerPayoffVar(p);
+    if (zero_sum_game) {
+      Objective obj(Objective::kMin);
+      obj.AddSummand(1, payoff_var);
+      const int obj_id = lcp.AddObjective(obj);
+      assert(obj_id == p);
+    }
     vector<string> vars;
     const int num_player_strategies = player.num_strategies();
+    compl_map[p].resize(num_player_strategies, Game::kInvalidId);
     for (int s = 0; s < num_player_strategies; ++s) {
       const string var = CreatePlayerMixedVar(p, s);
       Equation e(Equation::kGreaterEqual, 0);
       e.AddSummand(1, var);
       lcp.AddEquation(e);
       vars.push_back(var);
-
-      const string var2 = CreatePlayerPayoffVar(p);
       Equation e2(Equation::kGreaterEqual, 0);
-      e2.AddSummand(1, var2);
+      e2.AddSummand(1, payoff_var);
       const int num_strategy_profiles = game.num_strategy_profiles();
       for (int sp = 0; sp < num_strategy_profiles; ++sp) {
         const StrategyProfile profile = game.CreateProfile(sp);
@@ -65,7 +76,9 @@ Lcp LcpFactory::Create(const Game& game) {
       if (!zero_sum_game) {
         e.type(Equation::kEqual);
         e2.type(Equation::kEqual);
-        lcp.AddComplEquations(e, e2);
+        int compl_id = lcp.AddComplEquations(e, e2);
+        assert(compl_map[p][s] == Game::kInvalidId);
+        compl_map[p][s] = compl_id;
       }
     }
     Equation e(Equation::kEqual, 1);
@@ -75,9 +88,9 @@ Lcp LcpFactory::Create(const Game& game) {
     lcp.AddEquation(e);
     player_vars[p].swap(vars);
   }
-  // Equation e(Equation::kEqual, 0);
-  // e.AddSummand(1, "null");
-  // lcp.AddEquation(e);
+  if (_compl_map) {
+    compl_map.swap(*_compl_map);
+  }
   return lcp;
 }
 
