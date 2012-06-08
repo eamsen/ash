@@ -7,77 +7,6 @@ using std::stringstream;
 
 namespace ash {
 
-Equation::Equation(const Type type, const int constant)
-    : type_(type),
-      constant_(constant) {}
-
-int Equation::AddSummand(const int coefficient, const int var_id) {
-  assert(coefficients_.size() == variables_.size());
-  coefficients_.push_back(coefficient);
-  variables_.push_back(var_id);
-  return variables_.size() - 1;
-}
-
-void Equation::type(const Type type) {
-  type_ = type;
-}
-
-int Equation::size() const {
-  assert(variables_.size() == coefficients_.size());
-  return variables_.size();
-}
-
-string Equation::str() const {
-  stringstream ss;
-  for (int i = 0; i < size(); ++i) {
-    if (i != 0) {
-      ss << " ";
-    }
-    if (coefficients_[i] >= 0) {
-      ss << "+";
-    }
-    if (coefficients_[i] != 1) {
-      ss << coefficients_[i] << "*";
-    }
-    ss << "v" << variables_[i];
-  }
-  if (type_ == kEqual) { ss << " = "; }
-  else if (type_ == kLessEqual) { ss << " <= "; }
-  else if (type_ == kLess) { ss << " < "; }
-  else if (type_ == kGreaterEqual) { ss << " >= "; }
-  else if (type_ == kGreater) { ss << " > "; }
-  else if (true) { ss << " ? "; }
-  ss << constant_ << ";";
-  return ss.str();
-}
-
-Objective::Objective(const Type type)
-    : Equation(kEqual, 0),
-      type_(type) {}
-
-string Objective::str() const {
-  stringstream ss;
-  if (type_ == kMin) {
-    ss << "min: ";
-  } else {
-    ss << "max: ";
-  }
-  for (int i = 0; i < size(); ++i) {
-    if (i != 0) {
-      ss << " ";
-    }
-    if (coefficients_[i] >= 0) {
-      ss << "+";
-    }
-    if (coefficients_[i] != 1) {
-      ss << coefficients_[i] << "*";
-    }
-    ss << "v" << variables_[i];
-  }
-  ss << ";";
-  return ss.str();
-}
-
 const int Lcp::kInvalidId = -1;
 
 Lcp::Lcp()
@@ -125,6 +54,16 @@ void Lcp::UnselectObjective() {
 const Objective& Lcp::objective(const int id) const {
   assert(id >= 0 && id < num_objectives());
   return objectives_[id];
+}
+
+const Objective& Lcp::selected_objective() const {
+  assert(active_objective_ != kInvalidId);
+  return objective(active_objective_);
+}
+
+const Equation& Lcp::equation(const int id) const {
+  assert(id >= 0 && id < num_linear());
+  return equations_[id];
 }
 
 int Lcp::num_linear() const {

@@ -5,36 +5,9 @@
 #include <cassert>
 #include <string>
 #include <vector>
+#include "./equation.h"
 
 namespace ash {
-
-class Equation {
- public:
-  enum Type { kEqual, kLessEqual, kLess, kGreaterEqual, kGreater };
-
-  Equation(const Type type, const int constant);
-  int AddSummand(const int coefficient, const int var_id);
-  void type(const Type type);
-  std::string str() const;
-  int size() const;
- 
- protected:
-  Type type_;
-  int constant_;
-  std::vector<int> coefficients_;
-  std::vector<int> variables_;
-};
-
-class Objective : public Equation {
- public:
-  enum Type { kMin, kMax };
-
-  Objective(const Type type);
-  std::string str() const;
-
- private:
-  Type type_;
-};
 
 class Lcp {
  public:
@@ -48,7 +21,11 @@ class Lcp {
   void SelectEquation(const int id, const bool e1, const bool e2);
   void SelectObjective(const int id);
   void UnselectObjective();
+
   const Objective& objective(const int id) const;
+  const Objective& selected_objective() const;
+  const Equation& equation(const int id) const;
+
   int num_linear() const;
   int num_complementary() const;
   int num_objectives() const;
