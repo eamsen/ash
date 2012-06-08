@@ -8,7 +8,7 @@ GFLAGSDIR:=libs/gflags-2.0/.libs
 GTESTLIBS:=$(GTESTDIR)/libgtest.a $(GTESTDIR)/libgtest_main.a
 CXX:=g++ -std=c++0x -Ilibs/gflags-2.0/src
 CFLAGS:=-Wall -O3 -g
-LIBS:=$(GFLAGSDIR)/libgflags.a -lpthread -lrt
+LIBS:=$(GFLAGSDIR)/libgflags.a -lpthread -lrt -llpsolve55 -lcolamd -ldl -lm
 TSTFLAGS:=
 TSTLIBS:=$(GTESTLIBS) -lpthread -lrt
 BINS:=ash
