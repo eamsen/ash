@@ -3,7 +3,7 @@
 #include <cassert>
 #include <limits>
 #include <algorithm>
-#include <iostream>
+// #include <iostream>
 #include "./game.h"
 #include "./lcp.h"
 #include "./lcp-factory.h"
@@ -62,7 +62,7 @@ int EquilibriaFinder::FindPure() {
 }
 
 int EquilibriaFinder::FindMixed() {
-  using std::cout;
+  // using std::cout;
   Reset();
   Clock beg;
   vector<vector<int> > compl_map;
@@ -73,43 +73,59 @@ int EquilibriaFinder::FindMixed() {
   if (game_.zero_sum()) {
     for (int p = 0; p < num_players; ++p) {
       lcp.SelectObjective(p);
-      cout << lcp.str();
+      // cout << lcp.str();
+      Clock lp_beg;
       LpSolver lp_solver(lcp);
-      if (lp_solver.Solve()) {
-        cout << "solved\n\n";
+      const bool solved = lp_solver.Solve();
+      lp_duration_ += Clock() - lp_beg;
+      if (solved) {
+        // TODO(sawine): Need to assemble the real supporting variables.
+        equilibria_.push_back(StrategyProfile(num_players, 0));
+        // cout << "solved\n\n";
+        if (equilibria_.size() >= max_num_equilibria_) {
+          break;
+        }
       } else {
-        cout << "not solved\n\n";
+        // cout << "not solved\n\n";
       }
     }
   } else {
-    vector<uint32_t> supports(num_players, 1u); 
+    vector<uint32_t> supports(num_players, 1u);
     supports[0] = 0u;  // We use this only to kick off the permutations.
     while (NextSupports(&supports)) {
       for (int p = 0; p < num_players; ++p) {
         const int num_strategies = game_.num_strategies(p);
         assert(static_cast<int>(compl_map[p].size()) == num_strategies);
-        for (int s = 0; s < num_strategies; ++s) { 
+        for (int s = 0; s < num_strategies; ++s) {
           const int compl_fun_id = compl_map[p][s];
           if (compl_fun_id != Game::kInvalidId) {
-            const uint32_t mask = s + 1u; 
+            const uint32_t mask = s + 1u;
             const int supported = (supports[p] & mask) != 0u;
-            cout << char(p + 'a') << s << " : " << compl_fun_id << " is "
-                 << supported << "\n";
+            // cout << char(p + 'a') << s << " : " << compl_fun_id << " is "
+            //     << supported << "\n";
             lcp.SelectEquation(compl_fun_id, !supported, supported);
           }
         }
       }
-      cout << lcp.str();
+      // cout << lcp.str();
+      Clock lp_beg;
       LpSolver lp_solver(lcp);
-      if (lp_solver.Solve()) {
-        cout << "solved\n\n";
+      const bool solved = lp_solver.Solve();
+      lp_duration_ += Clock() - lp_beg;
+      if (solved) {
+        // TODO(sawine): Need to assemble the real supporting variables.
+        equilibria_.push_back(StrategyProfile(num_players, 0));
+        // cout << "solved\n\n";
+        if (equilibria_.size() >= max_num_equilibria_) {
+          break;
+        }
       } else {
-        cout << "not solved\n\n";
+        // cout << "not solved\n\n";
       }
     }
   }
   duration_ = Clock() - beg;
-  return 0;
+  return equilibria_.size();
 }
 
 bool EquilibriaFinder::NextSupports(vector<uint32_t>* supports) const {
@@ -126,12 +142,12 @@ bool EquilibriaFinder::NextSupports(vector<uint32_t>* supports) const {
   }
   return false;
 }
-    
 
 void EquilibriaFinder::Reset() {
   equilibria_.clear();
   duration_ = 0;
   lcp_duration_ = 0;
+  lp_duration_ = 0;
 }
 
 void EquilibriaFinder::max_num_equilibria(const int max_num) {
@@ -156,6 +172,10 @@ Clock::Diff EquilibriaFinder::duration() const {
 
 Clock::Diff EquilibriaFinder::lcp_duration() const {
   return lcp_duration_;
+}
+
+Clock::Diff EquilibriaFinder::lp_duration() const {
+  return lp_duration_;
 }
 
 }  // namespace ash

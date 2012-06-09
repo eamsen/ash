@@ -95,12 +95,9 @@ void FindMixedEquilibria(EquilibriaFinder* finder) {
   finder->max_num_equilibria(FLAGS_maxequilibria);
   const int num_eq = finder->FindMixed();
   const vector<StrategyProfile>& eqs = finder->equilibria();
-  cout << "Found " << num_eq << " mixed strategies Nash equilibria"
-       << (num_eq ? ":" : ".");
-  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
-    const StrategyProfile& profile = *it;
-    cout << " " << profile.str(finder->game());
-  }
-  cout << "\nLCP duration: " << Clock::DiffStr(finder->lcp_duration());
+  cout << "Found about " << num_eq << " mixed strategies Nash equilibria.";
+  // TODO(sawine): Print the supporting variables of the equilibria.
+  cout << "\nLCP-creation duration: " << Clock::DiffStr(finder->lcp_duration());
+  cout << "\nLP-solve duration: " << Clock::DiffStr(finder->lp_duration());
   cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";
 }

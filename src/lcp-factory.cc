@@ -1,5 +1,6 @@
 // Copyright 2012 Eugen Sawin <sawine@me73.com>
 #include "./lcp-factory.h"
+#include <cassert>
 #include <string>
 #include <vector>
 #include <sstream>
@@ -15,14 +16,14 @@ namespace ash {
 string CreatePlayerMixedVar(const int player_id, const int strategy_id) {
   assert(player_id <= 'z' - static_cast<int>('a'));
   stringstream ss;
-  ss << char('a' + player_id) << strategy_id;
+  ss << static_cast<char>('a' + player_id) << strategy_id;
   return ss.str();
 }
 
 string CreatePlayerPayoffVar(const int player_id) {
   assert(player_id <= 'Z' - static_cast<int>('A'));
   stringstream ss;
-  ss << char('A' + player_id);
+  ss << static_cast<char>('A' + player_id);
   return ss.str();
 }
 

@@ -1,5 +1,6 @@
 // Copyright 2012 Eugen Sawin <sawine@me73.com>
 #include "./lcp.h"
+#include <cassert>
 #include <sstream>
 
 using std::string;
@@ -29,7 +30,7 @@ int Lcp::AddComplEquations(const Equation& e1, const Equation& e2) {
   compl_active_.push_back(true);
   return compl_equations_.size() - 2;
 }
-  
+
 void Lcp::SelectEquation(const int id, const bool e1, const bool e2) {
   assert(id >= 0 && id < num_complementary() * 2 - 1);
   compl_active_[id] = e1;
@@ -51,6 +52,10 @@ void Lcp::UnselectObjective() {
   active_objective_ = kInvalidId;
 }
 
+bool Lcp::has_objective() const {
+  return active_objective_ != kInvalidId;
+}
+
 const Objective& Lcp::objective(const int id) const {
   assert(id >= 0 && id < num_objectives());
   return objectives_[id];
@@ -65,6 +70,17 @@ const Equation& Lcp::equation(const int id) const {
   assert(id >= 0 && id < num_linear());
   return equations_[id];
 }
+
+const Equation& Lcp::selected_equation(const int id) const {
+  assert(id >= 0 && id < num_complementary());
+  const int index = id * 2;
+  assert(compl_active_[index] != compl_active_[index + 1]);
+  if (compl_active_[index]) {
+    return compl_equations_[index];
+  }
+  return compl_equations_[index + 1];
+}
+
 
 int Lcp::num_linear() const {
   return equations_.size();

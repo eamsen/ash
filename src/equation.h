@@ -20,7 +20,7 @@ class Equation {
   int variable(const int id) const;
   std::string str() const;
   int size() const;
- 
+
  protected:
   Type type_;
   int constant_;
@@ -32,7 +32,8 @@ class Objective : public Equation {
  public:
   enum Type { kMin, kMax };
 
-  Objective(const Type type);
+  explicit Objective(const Type type);
+  Type type() const;
   std::string str() const;
 
  private:

@@ -22,6 +22,7 @@ class EquilibriaFinder {
   const std::vector<StrategyProfile>& equilibria() const;
   base::Clock::Diff duration() const;
   base::Clock::Diff lcp_duration() const;
+  base::Clock::Diff lp_duration() const;
 
  private:
   bool NextSupports(std::vector<uint32_t>* supports) const;
@@ -31,6 +32,7 @@ class EquilibriaFinder {
   size_t max_num_equilibria_;
   base::Clock::Diff duration_;
   base::Clock::Diff lcp_duration_;
+  base::Clock::Diff lp_duration_;
 };
 
 }  // namespace ash

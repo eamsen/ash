@@ -36,12 +36,12 @@ class Clock {
   static constexpr double kMinInMicro = 1.0 / kMicroInMin;
 
   // Initialised the clock with its default type and the current clock time.
-  Clock() : type_(kDefType) {
+  explicit Clock() : type_(kDefType) {
     clock_gettime(type_, &time_);
   }
 
   // Initialised the clock with given type and the current clock time.
-  Clock(Type type) : type_(type) {
+  explicit Clock(Type type) : type_(type) {
     clock_gettime(type_, &time_);
   }
 

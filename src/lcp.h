@@ -2,7 +2,6 @@
 #ifndef SRC_LCP_H_
 #define SRC_LCP_H_
 
-#include <cassert>
 #include <string>
 #include <vector>
 #include "./equation.h"
@@ -22,14 +21,18 @@ class Lcp {
   void SelectObjective(const int id);
   void UnselectObjective();
 
+  bool has_objective() const;
+
   const Objective& objective(const int id) const;
   const Objective& selected_objective() const;
   const Equation& equation(const int id) const;
+  const Equation& selected_equation(const int id) const;
 
   int num_linear() const;
   int num_complementary() const;
   int num_objectives() const;
   int num_variables() const;
+
   std::string str() const;
 
  private:

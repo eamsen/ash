@@ -74,6 +74,10 @@ Objective::Objective(const Type type)
     : Equation(kEqual, 0),
       type_(type) {}
 
+Objective::Type Objective::type() const {
+  return type_;
+}
+
 string Objective::str() const {
   stringstream ss;
   if (type_ == kMin) {

@@ -10,7 +10,7 @@ CXX:=g++ -std=c++0x -Ilibs/gflags-2.0/src
 CFLAGS:=-Wall -O3 -g
 LIBS:=$(GFLAGSDIR)/libgflags.a -lpthread -lrt -llpsolve55 -lcolamd -ldl -lm
 TSTFLAGS:=
-TSTLIBS:=$(GTESTLIBS) -lpthread -lrt
+TSTLIBS:=$(GTESTLIBS) $(LIBS)
 BINS:=ash
 
 TSTBINS:=$(notdir $(basename $(wildcard $(TSTDIR)/*.cc)))
