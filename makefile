@@ -42,6 +42,20 @@ perftest: opt
 	done
 	@echo "tested all (results in log/$(LOG))";
 
+GAMBITLOG:=gambit-perf-results.txt
+gambittest:
+	@mkdir -p log; rm -f log/$(GAMBITLOG);
+	@echo "test parameters: GAMBITLOG=$(GAMBITLOG)";
+	@for i in examples/*.nfg;\
+		do echo "testing $$i";\
+		echo "File: $$i\nPure:" >> log/$(GAMBITLOG);\
+		gambit-enumpure -q < $$i >> log/$(GAMBITLOG);\
+		echo "Pure & Mixed:" >> log/$(GAMBITLOG);\
+		gambit-enummixed -q < $$i >> log/$(GAMBITLOG);\
+		echo " " >> log/$(GAMBITLOG);\
+	done
+	@echo "tested all (results in log/$(GAMBITLOG))";
+
 depend: gtest gflags
 
 makedirs:
