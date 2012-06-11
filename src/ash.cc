@@ -31,6 +31,8 @@ using ash::MixedStrategyProfile;
 
 // Command-line flag for verbose output.
 DEFINE_bool(verbose, false, "Verbose output");
+// Command-line flag for brief output.
+DEFINE_bool(brief, false, "Brief output without explicit equilibria");
 // Command-line flag for mixed strategies equilibira.
 DEFINE_bool(mixed, true, "Find mixed (and pure) strategies Nash equilibria");
 // Command-line flag for max number of equilibira to be searched for.
@@ -58,7 +60,11 @@ int main(int argc, char* argv[]) {
   } else if (!Parser::FileSize(argv[1])) {
     cout << "File " << argv[1] << " is empty or does not exist.\n";
     return 1;
+  } else if (FLAGS_verbose && FLAGS_brief) {
+    cout << "Mutually exclusive flags selected (brief and verbose).\n";
+    return 1;
   }
+
   const string input_path = argv[1];
   Parser parser(input_path);
   StrategicGame parsed_game = parser.ParseStrategicGame();
@@ -81,9 +87,11 @@ void FindPureEquilibria(EquilibriaFinder* finder) {
   const int num_eq = finder->FindPure();
   const vector<StrategyProfile>& eqs = finder->equilibria();
   cout << "Found " << num_eq << " pure strategy Nash equilibria.";
-  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
-    const StrategyProfile& profile = *it;
-    cout << "\n" << profile.str(finder->game());
+  if (!FLAGS_brief) {
+    for (auto it = eqs.begin(); it != eqs.end(); ++it) {
+      const StrategyProfile& profile = *it;
+      cout << "\n" << profile.str(finder->game());
+    }
   }
   cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";
 }
@@ -93,9 +101,11 @@ void FindMixedEquilibria(EquilibriaFinder* finder) {
   const int num_eq = finder->FindMixed();
   const vector<MixedStrategyProfile>& eqs = finder->mixed_equilibria();
   cout << "Found " << num_eq << " mixed strategies Nash equilibria.";
-  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
-    const MixedStrategyProfile& profile = *it;
-    cout << "\n" << profile.str(finder->game());
+  if (!FLAGS_brief) {
+    for (auto it = eqs.begin(); it != eqs.end(); ++it) {
+      const MixedStrategyProfile& profile = *it;
+      cout << "\n" << profile.str(finder->game());
+    }
   }
   cout << "\nLCP-creation duration: " << Clock::DiffStr(finder->lcp_duration());
   cout << "\nLP-solve duration: " << Clock::DiffStr(finder->lp_duration());

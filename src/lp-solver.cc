@@ -1,6 +1,7 @@
 // Copyright 2012 Eugen Sawin <sawine@me73.com>
 #include "./lp-solver.h"
 #include <lpsolve/lp_lib.h>
+#include <gflags/gflags.h>
 #include <cassert>
 #include <vector>
 #include <iostream>
@@ -9,6 +10,8 @@
 
 using std::vector;
 using base::Clock;
+
+DECLARE_bool(verbose);
 
 namespace ash {
 
@@ -34,9 +37,11 @@ bool LpSolver::Solve() {
   const int num_vars = lcp_.num_variables();
   lprec* lp = make_lp(0, num_vars);
   assert(lp);
-  // for (int i = 0; i < num_vars; ++i) {
-  //   set_col_name(lp, i + 1, const_cast<char*>(lcp_.variable(i).c_str()));
-  // }
+  if (FLAGS_verbose) {
+    for (int i = 0; i < num_vars; ++i) {
+      set_col_name(lp, i + 1, const_cast<char*>(lcp_.variable(i).c_str()));
+    }
+  }
   set_add_rowmode(lp, true);
   const int num_linear = lcp_.num_linear();
   for (int e = 0; e < num_linear; ++e) {
@@ -59,14 +64,16 @@ bool LpSolver::Solve() {
   if (solved) {
     solution_.resize(num_vars, 0.0);
     get_variables(lp, &solution_[0]);
-    // write_LP(lp, stdout);
-    // for (int i = 0; i < num_vars; ++i) {
-      // if (i != 0) {
-        // std::cout << " ";
-      // }
-      // std::cout << "(" << get_col_name(lp, i + 1)
-      // << " " <<  solution_[i] << ")";
-    // }
+    if (FLAGS_verbose) {
+      std::cout << "lp-solve input:\n";
+      write_LP(lp, stdout);
+      std::cout << "\nlp-solve solution:\n";
+      for (int i = 0; i < num_vars; ++i) {
+        std::cout << "(" << get_col_name(lp, i + 1)
+                  << " " <<  solution_[i] << ")\n";
+      }
+      std::cout << "\n";
+    }
   }
   delete_lp(lp);
   duration_ = Clock() - beg;
