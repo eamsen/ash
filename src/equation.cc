@@ -74,14 +74,18 @@ string Equation::str() const {
 string Equation::str(const Lcp& lcp) const {
   stringstream ss;
   for (int i = 0; i < size(); ++i) {
+    const int coeff = coefficients_[i];
+    if (coeff == 0) {
+      continue;
+    }
     if (i != 0) {
       ss << " ";
     }
-    if (coefficients_[i] >= 0) {
+    if (coeff >= 0) {
       ss << "+";
     }
-    if (coefficients_[i] != 1) {
-      ss << coefficients_[i] << "*";
+    if (coeff != 1) {
+      ss << coeff << "*";
     }
     ss << lcp.variable(variables_[i]);
   }

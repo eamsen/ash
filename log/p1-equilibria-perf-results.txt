@@ -1,0 +1,1439 @@
+File: examples/airstrike.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 2µs
+Found 2 mixed strategies Nash equilibria.
+(mixed profile 
+  (Attacker (1 Target 1 (2)) (0 Target 2 (3)) (0 Target 3 (4)))
+  (Defender (0.0769231 Target 1 (2)) (0.384615 Target 2 (3)) (0.538462 Target 3 (4))))
+(mixed profile 
+  (Attacker (1 Target 1 (2)) (0 Target 2 (3)) (0 Target 3 (4)))
+  (Defender (0.0769231 Target 1 (2)) (0.384615 Target 2 (3)) (0.538462 Target 3 (4))))
+LCP-creation duration: 37µs
+LP-solve duration: 826µs
+Duration: 885µs
+ 
+File: examples/airstrike4.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 3µs
+Found 2 mixed strategies Nash equilibria.
+(mixed profile 
+  (Attacker (1 Target 1 (2)) (0 Target 2 (3)) (0 Target 3 (4)) (0 Target 4 (5)))
+  (Defender (0 Target 1 (2)) (0.148936 Target 2 (3)) (0.361702 Target 3 (4)) (0.489362 Target 4 (5))))
+(mixed profile 
+  (Attacker (1 Target 1 (2)) (0 Target 2 (3)) (0 Target 3 (4)) (0 Target 4 (5)))
+  (Defender (0 Target 1 (2)) (0.148936 Target 2 (3)) (0.361702 Target 3 (4)) (0.489362 Target 4 (5))))
+LCP-creation duration: 49µs
+LP-solve duration: 867µs
+Duration: 934µs
+ 
+File: examples/bos.nfg
+Found 2 pure strategy Nash equilibria.
+(pure profile
+  (P1 A)
+  (P2 A))
+(pure profile
+  (P1 B)
+  (P2 B))
+Duration: 3µs
+Found 3 mixed strategies Nash equilibria.
+(mixed profile 
+  (P1 (1 A) (0 B))
+  (P2 (1 A) (0 B)))
+(mixed profile 
+  (P1 (0 A) (1 B))
+  (P2 (0 A) (1 B)))
+(mixed profile 
+  (P1 (0.666667 A) (0.333333 B))
+  (P2 (0.333333 A) (0.666667 B)))
+LCP-creation duration: 26µs
+LP-solve duration: 3.05ms
+Duration: 3.11ms
+ 
+File: examples/bosx.nfg
+Found 2 pure strategy Nash equilibria.
+(pure profile
+  (P1 A)
+  (P2 A))
+(pure profile
+  (P1 B)
+  (P2 B))
+Duration: 8µs
+Found 2 mixed strategies Nash equilibria.
+(mixed profile 
+  (P1 (0.75 A) (0.25 B))
+  (P2 (0.2 A) (0 B) (0.8 C)))
+(mixed profile 
+  (P1 (0.75 A) (0.25 B))
+  (P2 (0.2 A) (0 B) (0.8 C)))
+LCP-creation duration: 46µs
+LP-solve duration: 6.14ms
+Duration: 6.26ms
+ 
+File: examples/chicken.nfg
+Found 2 pure strategy Nash equilibria.
+(pure profile
+  (P1 B)
+  (P2 A))
+(pure profile
+  (P1 A)
+  (P2 B))
+Duration: 3µs
+Found 3 mixed strategies Nash equilibria.
+(mixed profile 
+  (P1 (0 A) (1 B))
+  (P2 (1 A) (0 B)))
+(mixed profile 
+  (P1 (1 A) (0 B))
+  (P2 (0 A) (1 B)))
+(mixed profile 
+  (P1 (0.5 A) (0.5 B))
+  (P2 (0.5 A) (0.5 B)))
+LCP-creation duration: 26µs
+LP-solve duration: 2.47ms
+Duration: 2.53ms
+ 
+File: examples/coordination.nfg
+Found 2 pure strategy Nash equilibria.
+(pure profile
+  (P1 A)
+  (P2 A))
+(pure profile
+  (P1 B)
+  (P2 B))
+Duration: 3µs
+Found 3 mixed strategies Nash equilibria.
+(mixed profile 
+  (P1 (1 A) (0 B))
+  (P2 (1 A) (0 B)))
+(mixed profile 
+  (P1 (0 A) (1 B))
+  (P2 (0 A) (1 B)))
+(mixed profile 
+  (P1 (0.25 A) (0.75 B))
+  (P2 (0.25 A) (0.75 B)))
+LCP-creation duration: 26µs
+LP-solve duration: 2.56ms
+Duration: 2.62ms
+ 
+File: examples/rps.nfg
+Found 6 pure strategy Nash equilibria.
+(pure profile
+  (Spieler 1 Papier)
+  (Spieler 2 Stein)
+  (Spieler 3 Schere))
+(pure profile
+  (Spieler 1 Stein)
+  (Spieler 2 Papier)
+  (Spieler 3 Schere))
+(pure profile
+  (Spieler 1 Papier)
+  (Spieler 2 Schere)
+  (Spieler 3 Stein))
+(pure profile
+  (Spieler 1 Schere)
+  (Spieler 2 Papier)
+  (Spieler 3 Stein))
+(pure profile
+  (Spieler 1 Stein)
+  (Spieler 2 Schere)
+  (Spieler 3 Papier))
+(pure profile
+  (Spieler 1 Schere)
+  (Spieler 2 Stein)
+  (Spieler 3 Papier))
+Duration: 7µs
+Found 216 mixed strategies Nash equilibria.
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (0 Schere) (1 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (0 Schere) (1 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+(mixed profile 
+  (Spieler 1 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 2 (1 Schere) (0 Stein) (0 Papier))
+  (Spieler 3 (1 Schere) (0 Stein) (0 Papier)))
+LCP-creation duration: 78µs
+LP-solve duration: 105.51ms
+Duration: 107.94ms
+ 
+File: examples/sspb.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 3µs
+Found 2 mixed strategies Nash equilibria.
+(mixed profile 
+  (Ernie (0.333333 Schere) (0 Stein) (0.333333 Papier) (0.333333 Brunnen))
+  (Bert (0.333333 Schere) (0 Stein) (0.333333 Papier) (0.333333 Brunnen)))
+(mixed profile 
+  (Ernie (0.333333 Schere) (0 Stein) (0.333333 Papier) (0.333333 Brunnen))
+  (Bert (0.333333 Schere) (0 Stein) (0.333333 Papier) (0.333333 Brunnen)))
+LCP-creation duration: 49µs
+LP-solve duration: 857µs
+Duration: 916µs
+ 
+File: examples/sspes.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 4µs
+Found 2 mixed strategies Nash equilibria.
+(mixed profile 
+  (Leonard (0.2 Schere) (0.2 Stein) (0.2 Papier) (0.2 Echse) (0.2 Spock))
+  (Sheldon (0.2 Schere) (0.2 Stein) (0.2 Papier) (0.2 Echse) (0.2 Spock)))
+(mixed profile 
+  (Leonard (0.2 Schere) (0.2 Stein) (0.2 Papier) (0.2 Echse) (0.2 Spock))
+  (Sheldon (0.2 Schere) (0.2 Stein) (0.2 Papier) (0.2 Echse) (0.2 Spock)))
+LCP-creation duration: 63µs
+LP-solve duration: 952µs
+Duration: 1.02ms
+ 
+File: examples/stengel.nfg
+Found 2 pure strategy Nash equilibria.
+(pure profile
+  (1 5)
+  (2 1))
+(pure profile
+  (1 2)
+  (2 6))
+Duration: 7µs
+Found 128 mixed strategies Nash equilibria.
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0 1) (0.594595 2) (0.27027 3) (0 4) (1.88684e-14 5) (0.135135 6))
+  (2 (1.88684e-14 1) (0.135135 2) (0.27027 3) (0 4) (0 5) (0.594595 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+(mixed profile 
+  (1 (0.538776 1) (0.269388 2) (0.122449 3) (0.0489796 4) (0.0163265 5) (0.00408163 6))
+  (2 (0.0163265 1) (0.00408163 2) (0.122449 3) (0.0489796 4) (0.538776 5) (0.269388 6)))
+LCP-creation duration: 84µs
+LP-solve duration: 2.14s
+Duration: 2.15s
+ 

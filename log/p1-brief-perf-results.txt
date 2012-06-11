@@ -1,0 +1,80 @@
+File: examples/airstrike.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 2µs
+Found 2 mixed strategies Nash equilibria.
+LCP-creation duration: 37µs
+LP-solve duration: 904µs
+Duration: 960µs
+ 
+File: examples/airstrike4.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 3µs
+Found 2 mixed strategies Nash equilibria.
+LCP-creation duration: 48µs
+LP-solve duration: 847µs
+Duration: 917µs
+ 
+File: examples/bos.nfg
+Found 2 pure strategy Nash equilibria.
+Duration: 3µs
+Found 3 mixed strategies Nash equilibria.
+LCP-creation duration: 27µs
+LP-solve duration: 2.50ms
+Duration: 2.56ms
+ 
+File: examples/bosx.nfg
+Found 2 pure strategy Nash equilibria.
+Duration: 3µs
+Found 2 mixed strategies Nash equilibria.
+LCP-creation duration: 31µs
+LP-solve duration: 6.12ms
+Duration: 6.22ms
+ 
+File: examples/chicken.nfg
+Found 2 pure strategy Nash equilibria.
+Duration: 3µs
+Found 3 mixed strategies Nash equilibria.
+LCP-creation duration: 27µs
+LP-solve duration: 2.60ms
+Duration: 2.67ms
+ 
+File: examples/coordination.nfg
+Found 2 pure strategy Nash equilibria.
+Duration: 3µs
+Found 3 mixed strategies Nash equilibria.
+LCP-creation duration: 26µs
+LP-solve duration: 2.54ms
+Duration: 2.60ms
+ 
+File: examples/rps.nfg
+Found 6 pure strategy Nash equilibria.
+Duration: 7µs
+Found 216 mixed strategies Nash equilibria.
+LCP-creation duration: 79µs
+LP-solve duration: 101.12ms
+Duration: 103.64ms
+ 
+File: examples/sspb.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 3µs
+Found 2 mixed strategies Nash equilibria.
+LCP-creation duration: 49µs
+LP-solve duration: 186µs
+Duration: 241µs
+ 
+File: examples/sspes.nfg
+Found 0 pure strategy Nash equilibria.
+Duration: 4µs
+Found 2 mixed strategies Nash equilibria.
+LCP-creation duration: 62µs
+LP-solve duration: 902µs
+Duration: 983µs
+ 
+File: examples/stengel.nfg
+Found 2 pure strategy Nash equilibria.
+Duration: 12µs
+Found 128 mixed strategies Nash equilibria.
+LCP-creation duration: 98µs
+LP-solve duration: 2.14s
+Duration: 2.15s
+ 

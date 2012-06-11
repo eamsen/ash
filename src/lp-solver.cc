@@ -65,6 +65,7 @@ bool LpSolver::Solve() {
     solution_.resize(num_vars, 0.0);
     get_variables(lp, &solution_[0]);
     if (FLAGS_verbose) {
+      std::cout << lcp_.str();
       std::cout << "lp-solve input:\n";
       write_LP(lp, stdout);
       std::cout << "\nlp-solve solution:\n";
@@ -84,12 +85,17 @@ bool LpSolver::AddEquation(const Equation& e, lprec* lp) {
   vector<int> vars;
   vector<double> coeffs;
   const int num_summands = e.size();
+  int used_summands = 0;
   for (int su = 0; su < num_summands; ++su) {
-    vars.push_back(e.variable(su) + 1);
-    coeffs.push_back(e.coefficient(su));
+    const int coeff = e.coefficient(su);
+    if (coeff != 0) {
+      vars.push_back(e.variable(su) + 1);
+      coeffs.push_back(e.coefficient(su));
+      ++used_summands;
+    }
   }
   const int type = ConstraintType(e.type());
-  const bool ok = add_constraintex(lp, num_summands, &coeffs[0], &vars[0],
+  const bool ok = add_constraintex(lp, used_summands, &coeffs[0], &vars[0],
                                    type, e.constant());
   assert(ok);
   return ok;

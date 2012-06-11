@@ -31,7 +31,7 @@ profile: clean compile
 opt: CFLAGS=-Ofast -flto -mtune=native -DNDEBUG
 opt: clean compile
 
-ARGS:=
+ARGS:=-verbose=false -brief=false
 LOG:=perf-results.txt
 perftest: opt
 	@mkdir -p log; rm -f log/$(LOG);
