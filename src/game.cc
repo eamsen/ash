@@ -95,6 +95,57 @@ string StrategyProfile::str(const Game& game) const {
   return ss.str();
 }
 
+MixedStrategyProfile::MixedStrategyProfile(const int num_players)
+    : probs_(num_players) {}
+
+void MixedStrategyProfile::SetNumStrategies(const int player_id,
+                                            const int num_strategies) {
+  assert(player_id >= 0 && player_id < static_cast<int>(probs_.size()));
+  assert(num_strategies >= 0 &&
+         num_strategies >= static_cast<int>(probs_[player_id].size()));
+  probs_[player_id].resize(num_strategies, 0.0f);
+}
+
+void MixedStrategyProfile::AddProbability(const int player_id,
+                                          const int strategy_id,
+                                          const float prob) {
+  assert(player_id >= 0 && player_id < static_cast<int>(probs_.size()));
+  assert(strategy_id >= 0 &&
+         strategy_id < static_cast<int>(probs_[player_id].size()));
+  probs_[player_id][strategy_id] = prob;
+}
+
+float MixedStrategyProfile::probability(const int player_id,
+                                        const int strategy_id) const {
+  assert(player_id >= 0 && player_id < static_cast<int>(probs_.size()));
+  assert(strategy_id >= 0 &&
+         strategy_id < static_cast<int>(probs_[player_id].size()));
+  return probs_[player_id][strategy_id];
+}
+
+string MixedStrategyProfile::str(const Game& game) const {
+  stringstream ss;
+  ss << "(";
+  for (size_t p = 0; p < probs_.size(); ++p) {
+    const vector<float>& strategy_probs = probs_[p];
+    const Player& player = game.player(p);
+    if (p != 0) {
+      ss << " ";
+    }
+    ss << "(";
+    for (size_t s = 0; s < strategy_probs.size(); ++s) {
+      const string& strategy = game.strategy(player.strategy(s));
+      if (s != 0) {
+        ss << " ";
+      }
+      ss << "(" << strategy_probs[s] << " " << strategy << ")";
+    }
+    ss << ")";
+  }
+  ss << ")";
+  return ss.str();
+}
+
 const int Game::kInvalidId = -1;
 
 Game::Game(const std::string& name)

@@ -27,6 +27,7 @@ using ash::Lcp;
 using ash::LcpFactory;
 using ash::EquilibriaFinder;
 using ash::StrategyProfile;
+using ash::MixedStrategyProfile;
 
 // Command-line flag for verbose output.
 DEFINE_bool(verbose, false, "Verbose output");
@@ -82,11 +83,10 @@ void FindPureEquilibria(EquilibriaFinder* finder) {
   finder->max_num_equilibria(FLAGS_maxequilibria);
   const int num_eq = finder->FindPure();
   const vector<StrategyProfile>& eqs = finder->equilibria();
-  cout << "Found " << num_eq << " pure strategy Nash equilibria"
-       << (num_eq ? ":" : ".");
+  cout << "Found " << num_eq << " pure strategy Nash equilibria.";
   for (auto it = eqs.begin(); it != eqs.end(); ++it) {
     const StrategyProfile& profile = *it;
-    cout << " " << profile.str(finder->game());
+    cout << "\n" << profile.str(finder->game());
   }
   cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";
 }
@@ -94,9 +94,12 @@ void FindPureEquilibria(EquilibriaFinder* finder) {
 void FindMixedEquilibria(EquilibriaFinder* finder) {
   finder->max_num_equilibria(FLAGS_maxequilibria);
   const int num_eq = finder->FindMixed();
-  const vector<StrategyProfile>& eqs = finder->equilibria();
-  cout << "Found about " << num_eq << " mixed strategies Nash equilibria.";
-  // TODO(sawine): Print the supporting variables of the equilibria.
+  const vector<MixedStrategyProfile>& eqs = finder->mixed_equilibria();
+  cout << "Found " << num_eq << " mixed strategies Nash equilibria.";
+  for (auto it = eqs.begin(); it != eqs.end(); ++it) {
+    const MixedStrategyProfile& profile = *it;
+    cout << "\n" << profile.str(finder->game());
+  }
   cout << "\nLCP-creation duration: " << Clock::DiffStr(finder->lcp_duration());
   cout << "\nLP-solve duration: " << Clock::DiffStr(finder->lp_duration());
   cout << "\nDuration: " << Clock::DiffStr(finder->duration()) << "\n";

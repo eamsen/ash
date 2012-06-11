@@ -23,6 +23,7 @@ class Lcp {
 
   bool has_objective() const;
 
+  const std::string& variable(const int id) const;
   const Objective& objective(const int id) const;
   const Objective& selected_objective() const;
   const Equation& equation(const int id) const;

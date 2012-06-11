@@ -7,6 +7,8 @@
 
 namespace ash {
 
+class Lcp;
+
 class Equation {
  public:
   enum Type { kEqual, kLessEqual, kLess, kGreaterEqual, kGreater };
@@ -18,8 +20,9 @@ class Equation {
   int constant() const;
   int coefficient(const int id) const;
   int variable(const int id) const;
-  std::string str() const;
   int size() const;
+  std::string str() const;
+  std::string str(const Lcp& lcp) const;
 
  protected:
   Type type_;
@@ -35,6 +38,7 @@ class Objective : public Equation {
   explicit Objective(const Type type);
   Type type() const;
   std::string str() const;
+  std::string str(const Lcp& lcp) const;
 
  private:
   Type type_;

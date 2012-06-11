@@ -14,6 +14,7 @@ class Player {
 
   int strategy(const int index) const;
   int num_strategies() const;
+  const std::string& name() const;
 
  private:
   std::vector<int> strategies_;
@@ -46,6 +47,18 @@ class StrategyProfile {
 
  private:
   std::vector<int> strategies_;
+};
+
+class MixedStrategyProfile {
+ public:
+  MixedStrategyProfile(const int num_players);
+  void SetNumStrategies(const int player, const int num_strategies);
+  void AddProbability(const int player, const  int strategy, const float prob);
+  float probability(const int player_id, const int strategy_id) const;
+  std::string str(const Game& game) const;
+
+ private:
+  std::vector<std::vector<float> > probs_;
 };
 
 class Game {

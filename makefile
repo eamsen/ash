@@ -31,13 +31,14 @@ profile: clean compile
 opt: CFLAGS=-Ofast -flto -mtune=native -DNDEBUG
 opt: clean compile
 
+ARGS:=
 LOG:=perf-results.txt
 perftest: opt
 	@mkdir -p log; rm -f log/$(LOG);
-	@echo "test parameters: LOG=$(LOG)";
+	@echo "test parameters: LOG=$(LOG) ARGS=$(ARGS)";
 	@for i in examples/*.nfg;\
 		do echo "testing $$i";\
-		./bin/ash $$i >> log/$(LOG);\
+		./bin/ash $(ARGS) $$i >> log/$(LOG);\
 		echo " " >> log/$(LOG);\
 	done
 	@echo "tested all (results in log/$(LOG))";

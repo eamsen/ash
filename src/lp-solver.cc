@@ -3,6 +3,7 @@
 #include <lpsolve/lp_lib.h>
 #include <cassert>
 #include <vector>
+#include <iostream>
 #include "./lcp.h"
 #include "./equation.h"
 
@@ -33,6 +34,9 @@ bool LpSolver::Solve() {
   const int num_vars = lcp_.num_variables();
   lprec* lp = make_lp(0, num_vars);
   assert(lp);
+  // for (int i = 0; i < num_vars; ++i) {
+  //   set_col_name(lp, i + 1, const_cast<char*>(lcp_.variable(i).c_str()));
+  // }
   set_add_rowmode(lp, true);
   const int num_linear = lcp_.num_linear();
   for (int e = 0; e < num_linear; ++e) {
@@ -51,9 +55,21 @@ bool LpSolver::Solve() {
   }
   set_verbose(lp, NEUTRAL);
   const int result = solve(lp);
+  const bool solved = result == OPTIMAL;
+  if (solved) {
+    solution_.resize(num_vars, 0.0);
+    get_variables(lp, &solution_[0]);
+    // write_LP(lp, stdout);
+    // for (int i = 0; i < num_vars; ++i) {
+      // if (i != 0) {
+        // std::cout << " ";
+      // }
+      // std::cout << "(" << get_col_name(lp, i + 1) << " " <<  solution_[i] << ")";
+    // }
+  }
   delete_lp(lp);
   duration_ = Clock() - beg;
-  return result == OPTIMAL;
+  return solved;
 }
 
 bool LpSolver::AddEquation(const Equation& e, lprec* lp) {
@@ -61,7 +77,7 @@ bool LpSolver::AddEquation(const Equation& e, lprec* lp) {
   vector<double> coeffs;
   const int num_summands = e.size();
   for (int su = 0; su < num_summands; ++su) {
-    vars.push_back(e.variable(su));
+    vars.push_back(e.variable(su) + 1);
     coeffs.push_back(e.coefficient(su));
   }
   const int type = ConstraintType(e.type());
@@ -76,7 +92,7 @@ bool LpSolver::AddObjective(const Objective& obj, lprec* lp) {
   vector<double> coeffs;
   const int num_summands = obj.size();
   for (int su = 0; su < num_summands; ++su) {
-    vars.push_back(obj.variable(su));
+    vars.push_back(obj.variable(su) + 1);
     coeffs.push_back(obj.coefficient(su));
   }
   const bool ok = set_obj_fnex(lp, num_summands, &coeffs[0], &vars[0]);
@@ -90,7 +106,16 @@ bool LpSolver::AddObjective(const Objective& obj, lprec* lp) {
 }
 
 void LpSolver::Reset() {
+  solution_.clear();
   duration_ = 0;
+}
+
+const vector<double>& LpSolver::solution() const {
+  return solution_;
+}
+
+Clock::Diff LpSolver::duration() const {
+  return duration_;
 }
 
 }  // namespace ash

@@ -3,7 +3,6 @@
 #include <cassert>
 #include <limits>
 #include <algorithm>
-// #include <iostream>
 #include "./game.h"
 #include "./lcp.h"
 #include "./lcp-factory.h"
@@ -62,31 +61,25 @@ int EquilibriaFinder::FindPure() {
 }
 
 int EquilibriaFinder::FindMixed() {
-  // using std::cout;
   Reset();
   Clock beg;
   vector<vector<int> > compl_map;
-  Lcp lcp = LcpFactory::Create(game_, &compl_map);
+  vector<vector<int> > player_vars;
+  Lcp lcp = LcpFactory::Create(game_, &compl_map, &player_vars);
   lcp_duration_ = Clock() - beg;
   const int num_players = game_.num_players();
   assert(static_cast<int>(compl_map.size()) == num_players);
   if (game_.zero_sum()) {
     for (int p = 0; p < num_players; ++p) {
       lcp.SelectObjective(p);
-      // cout << lcp.str();
-      Clock lp_beg;
       LpSolver lp_solver(lcp);
       const bool solved = lp_solver.Solve();
-      lp_duration_ += Clock() - lp_beg;
+      lp_duration_ += lp_solver.duration();
       if (solved) {
-        // TODO(sawine): Need to assemble the real supporting variables.
-        equilibria_.push_back(StrategyProfile(num_players, 0));
-        // cout << "solved\n\n";
+        AddMixedEquilibrium(lp_solver.solution(), player_vars);
         if (equilibria_.size() >= max_num_equilibria_) {
           break;
         }
-      } else {
-        // cout << "not solved\n\n";
       }
     }
   } else {
@@ -98,34 +91,27 @@ int EquilibriaFinder::FindMixed() {
         assert(static_cast<int>(compl_map[p].size()) == num_strategies);
         for (int s = 0; s < num_strategies; ++s) {
           const int compl_fun_id = compl_map[p][s];
-          if (compl_fun_id != Game::kInvalidId) {
+          if (compl_fun_id != Lcp::kInvalidId) {
             const uint32_t mask = s + 1u;
             const int supported = (supports[p] & mask) != 0u;
-            // cout << char(p + 'a') << s << " : " << compl_fun_id << " is "
-            //     << supported << "\n";
             lcp.SelectEquation(compl_fun_id, !supported, supported);
           }
         }
       }
-      // cout << lcp.str();
       Clock lp_beg;
       LpSolver lp_solver(lcp);
       const bool solved = lp_solver.Solve();
       lp_duration_ += Clock() - lp_beg;
       if (solved) {
-        // TODO(sawine): Need to assemble the real supporting variables.
-        equilibria_.push_back(StrategyProfile(num_players, 0));
-        // cout << "solved\n\n";
+        AddMixedEquilibrium(lp_solver.solution(), player_vars);
         if (equilibria_.size() >= max_num_equilibria_) {
           break;
         }
-      } else {
-        // cout << "not solved\n\n";
-      }
+      } 
     }
   }
   duration_ = Clock() - beg;
-  return equilibria_.size();
+  return mixed_equilibria_.size();
 }
 
 bool EquilibriaFinder::NextSupports(vector<uint32_t>* supports) const {
@@ -143,8 +129,24 @@ bool EquilibriaFinder::NextSupports(vector<uint32_t>* supports) const {
   return false;
 }
 
+void EquilibriaFinder::AddMixedEquilibrium(const vector<double>& probs,
+                                     const vector<vector<int> >& player_vars) {
+  const int num_players = player_vars.size();
+  MixedStrategyProfile profile(num_players);
+  for (int p = 0; p < num_players; ++p) {
+    const vector<int>& strategies = player_vars[p];
+    const int num_strategies = strategies.size();
+    profile.SetNumStrategies(p, num_strategies);
+    for (int s = 0; s < num_strategies; ++s) {
+      profile.AddProbability(p, s, probs[player_vars[p][s]]);
+    }
+  }
+  mixed_equilibria_.push_back(profile);
+}
+
 void EquilibriaFinder::Reset() {
   equilibria_.clear();
+  mixed_equilibria_.clear();
   duration_ = 0;
   lcp_duration_ = 0;
   lp_duration_ = 0;
@@ -164,6 +166,10 @@ const Game& EquilibriaFinder::game() const {
 
 const vector<StrategyProfile>& EquilibriaFinder::equilibria() const {
   return equilibria_;
+}
+
+const vector<MixedStrategyProfile>& EquilibriaFinder::mixed_equilibria() const {
+  return mixed_equilibria_;
 }
 
 Clock::Diff EquilibriaFinder::duration() const {

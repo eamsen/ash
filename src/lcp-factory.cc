@@ -28,10 +28,11 @@ string CreatePlayerPayoffVar(const int player_id) {
 }
 
 Lcp LcpFactory::Create(const Game& game) {
-  return Create(game, NULL);
+  return Create(game, NULL, NULL);
 }
 
-Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
+Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map,
+                       vector<vector<int> >* _player_vars) {
   Lcp lcp;
   const bool zero_sum_game = game.zero_sum();
   const int num_players = game.num_players();
@@ -47,10 +48,10 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
       assert(obj_id == p);
     }
     const int num_player_strategies = player.num_strategies();
-    compl_map[p].resize(num_player_strategies, Game::kInvalidId);
-    player_vars[p].resize(num_player_strategies, Game::kInvalidId);
+    compl_map[p].resize(num_player_strategies, Lcp::kInvalidId);
+    player_vars[p].resize(num_player_strategies, Lcp::kInvalidId);
     for (int s = 0; s < num_player_strategies; ++s) {
-      if (player_vars[p][s] == Game::kInvalidId) {
+      if (player_vars[p][s] == Lcp::kInvalidId) {
         player_vars[p][s] = lcp.AddVariable(CreatePlayerMixedVar(p, s));
       }
       const int var_id = player_vars[p][s];
@@ -71,9 +72,9 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
             continue;
           }
           if (player_vars[p2].empty()) {
-            player_vars[p2].resize(game.num_strategies(p2), Game::kInvalidId);
+            player_vars[p2].resize(game.num_strategies(p2), Lcp::kInvalidId);
           }
-          if (player_vars[p2][profile[p2]] == Game::kInvalidId) {
+          if (player_vars[p2][profile[p2]] == Lcp::kInvalidId) {
             player_vars[p2][profile[p2]] =
               lcp.AddVariable(CreatePlayerMixedVar(p2, profile[p2]));
           }
@@ -85,7 +86,7 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
         e.type(Equation::kEqual);
         e2.type(Equation::kEqual);
         int compl_id = lcp.AddComplEquations(e, e2);
-        assert(compl_map[p][s] == Game::kInvalidId);
+        assert(compl_map[p][s] == Lcp::kInvalidId);
         compl_map[p][s] = compl_id;
       }
     }
@@ -99,6 +100,9 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map) {
   }
   if (_compl_map) {
     compl_map.swap(*_compl_map);
+  }
+  if (_player_vars) {
+    player_vars.swap(*_player_vars);
   }
   return lcp;
 }

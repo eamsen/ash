@@ -2,6 +2,7 @@
 #ifndef SRC_LP_SOLVER_H_
 #define SRC_LP_SOLVER_H_
 
+#include <vector>
 #include "./clock.h"
 
 struct _lprec;
@@ -21,10 +22,12 @@ class LpSolver {
   bool AddObjective(const Objective& obj, lprec* lp);
   void Reset();
 
+  const std::vector<double>& solution() const;
   base::Clock::Diff duration() const;
 
  private:
   const Lcp& lcp_;
+  std::vector<double> solution_;
   base::Clock::Diff duration_;
 };
 

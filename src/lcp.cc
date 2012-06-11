@@ -56,6 +56,11 @@ bool Lcp::has_objective() const {
   return active_objective_ != kInvalidId;
 }
 
+const string& Lcp::variable(const int id) const {
+  assert(id >= 0 && id < num_variables());
+  return variables_[id];
+}
+
 const Objective& Lcp::objective(const int id) const {
   assert(id >= 0 && id < num_objectives());
   return objectives_[id];
@@ -101,23 +106,23 @@ int Lcp::num_variables() const {
 string Lcp::str() const {
   stringstream ss;
   if (active_objective_ != kInvalidId) {
-    ss << objective(active_objective_).str() << "\n";
+    ss << objective(active_objective_).str(*this) << "\n";
   } else {
     ss << "min: ;\n";
   }
   for (auto it = equations_.begin(); it != equations_.end(); ++it) {
-    ss << it->str() << "\n";
+    ss << it->str(*this) << "\n";
   }
   assert(compl_equations_.size() % 2 == 0);
   for (size_t i = 0; i < compl_equations_.size(); ++i) {
     if (compl_active_[i]) {
-      ss << compl_equations_[i].str();
+      ss << compl_equations_[i].str(*this);
     }
     if (compl_active_[i++] && compl_active_[i]) {
       ss << "  v  ";
     }
     if (compl_active_[i]) {
-      ss << compl_equations_[i].str();
+      ss << compl_equations_[i].str(*this);
     }
     ss << "\n";
   }
