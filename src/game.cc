@@ -28,6 +28,10 @@ int Player::strategy(const int index) const {
   return strategies_[index];
 }
 
+const string& Player::name() const {
+  return name_;
+}
+
 int Player::num_strategies() const {
   return strategies_.size();
 }
@@ -83,13 +87,11 @@ string StrategyProfile::str() const {
 
 string StrategyProfile::str(const Game& game) const {
   stringstream ss;
-  ss << "(";
+  ss << "(pure profile";
   for (int i = 0; i < size(); ++i) {
-    if (i != 0) {
-      ss << " ";
-    }
     const Player& player = game.player(i);
-    ss << game.strategy(player.strategy(strategy(i)));
+    ss << "\n  (" << player.name()
+       << " " << game.strategy(player.strategy(strategy(i))) << ")";
   }
   ss << ")";
   return ss.str();
@@ -125,20 +127,14 @@ float MixedStrategyProfile::probability(const int player_id,
 
 string MixedStrategyProfile::str(const Game& game) const {
   stringstream ss;
-  ss << "(";
+  ss << "(mixed profile ";
   for (size_t p = 0; p < probs_.size(); ++p) {
     const vector<float>& strategy_probs = probs_[p];
     const Player& player = game.player(p);
-    if (p != 0) {
-      ss << " ";
-    }
-    ss << "(";
+    ss << "\n  (" << player.name();
     for (size_t s = 0; s < strategy_probs.size(); ++s) {
       const string& strategy = game.strategy(player.strategy(s));
-      if (s != 0) {
-        ss << " ";
-      }
-      ss << "(" << strategy_probs[s] << " " << strategy << ")";
+      ss << " (" << strategy_probs[s] << " " << strategy << ")";
     }
     ss << ")";
   }

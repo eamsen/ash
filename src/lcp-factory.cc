@@ -38,9 +38,11 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map,
   const int num_players = game.num_players();
   vector<vector<int> > compl_map(num_players);
   vector<vector<int> > player_vars(num_players);
+  vector<int> payoff_vars(num_players);
   for (int p = 0; p < num_players; ++p) {
     const Player& player = game.player(p);
     const int payoff_var_id = lcp.AddVariable(CreatePlayerPayoffVar(p));
+    payoff_vars[p] = payoff_var_id;
     if (zero_sum_game) {
       Objective obj(Objective::kMin);
       obj.AddSummand(1, payoff_var_id);
@@ -97,6 +99,15 @@ Lcp LcpFactory::Create(const Game& game, vector<vector<int> >* _compl_map,
     }
     lcp.AddEquation(e);
     // player_vars[p].swap(vars);
+  }
+  if (zero_sum_game) {
+    assert(num_players > 1);
+    for (int i = 1; i < num_players; ++i) {
+      Equation e(Equation::kEqual, 0);
+      e.AddSummand(1, payoff_vars[i-1]);
+      e.AddSummand(-1, payoff_vars[i]);
+      lcp.AddEquation(e);
+    }
   }
   if (_compl_map) {
     compl_map.swap(*_compl_map);

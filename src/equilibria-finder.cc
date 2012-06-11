@@ -70,6 +70,7 @@ int EquilibriaFinder::FindMixed() {
   const int num_players = game_.num_players();
   assert(static_cast<int>(compl_map.size()) == num_players);
   if (game_.zero_sum()) {
+    // Zero-sum game.
     for (int p = 0; p < num_players; ++p) {
       lcp.SelectObjective(p);
       LpSolver lp_solver(lcp);
@@ -83,6 +84,7 @@ int EquilibriaFinder::FindMixed() {
       }
     }
   } else {
+    // Non-zero-sum game.
     vector<uint32_t> supports(num_players, 1u);
     supports[0] = 0u;  // We use this only to kick off the permutations.
     while (NextSupports(&supports)) {
@@ -107,7 +109,7 @@ int EquilibriaFinder::FindMixed() {
         if (equilibria_.size() >= max_num_equilibria_) {
           break;
         }
-      } 
+      }
     }
   }
   duration_ = Clock() - beg;

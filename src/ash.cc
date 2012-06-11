@@ -31,10 +31,8 @@ using ash::MixedStrategyProfile;
 
 // Command-line flag for verbose output.
 DEFINE_bool(verbose, false, "Verbose output");
-// Command-line flag for pure strategy equilibira.
-DEFINE_bool(pure, true, "Find pure strategy Nash equilibria");
 // Command-line flag for mixed strategies equilibira.
-DEFINE_bool(mixed, true, "Find mixed strategies Nash equilibria");
+DEFINE_bool(mixed, true, "Find mixed (and pure) strategies Nash equilibria");
 // Command-line flag for max number of equilibira to be searched for.
 DEFINE_int32(maxequilibria, numeric_limits<int>::max(),
              "Maximum number of equilibira to be found (min 1)");
@@ -70,11 +68,10 @@ int main(int argc, char* argv[]) {
   }
   Game game = GameFactory::Create(parsed_game);
   EquilibriaFinder finder(game);
-  if (FLAGS_pure) {
-    FindPureEquilibria(&finder);
-  }
+  FindPureEquilibria(&finder);
   if (FLAGS_mixed) {
     FindMixedEquilibria(&finder);
+  } else {
   }
   return 0;
 }

@@ -64,7 +64,8 @@ bool LpSolver::Solve() {
       // if (i != 0) {
         // std::cout << " ";
       // }
-      // std::cout << "(" << get_col_name(lp, i + 1) << " " <<  solution_[i] << ")";
+      // std::cout << "(" << get_col_name(lp, i + 1)
+      // << " " <<  solution_[i] << ")";
     // }
   }
   delete_lp(lp);

@@ -51,7 +51,7 @@ class StrategyProfile {
 
 class MixedStrategyProfile {
  public:
-  MixedStrategyProfile(const int num_players);
+  explicit MixedStrategyProfile(const int num_players);
   void SetNumStrategies(const int player, const int num_strategies);
   void AddProbability(const int player, const  int strategy, const float prob);
   float probability(const int player_id, const int strategy_id) const;
