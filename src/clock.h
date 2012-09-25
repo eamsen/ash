@@ -1,4 +1,4 @@
-// Copyright 2012 Eugen Sawin <sawine@me73.com>
+// Copyright 2012 Eugen Sawin <esawin@me73.com>
 #ifndef SRC_CLOCK_H_
 #define SRC_CLOCK_H_
 

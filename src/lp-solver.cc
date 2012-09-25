@@ -1,4 +1,4 @@
-// Copyright 2012 Eugen Sawin <sawine@me73.com>
+// Copyright 2012 Eugen Sawin <esawin@me73.com>
 #include "./lp-solver.h"
 #include <lpsolve/lp_lib.h>
 #include <gflags/gflags.h>

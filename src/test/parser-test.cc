@@ -1,4 +1,5 @@
-// Copyright 2012 Eugen Sawin <sawine@me73.com>
+// Copyright 2012 Eugen Sawin <esawin@me73.com>
+#include <gflags/gflags.h>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <fstream>
@@ -21,6 +22,8 @@ using ::testing::ElementsAre;
 using ::testing::Contains;
 using ::testing::Not;
 // using ::testing::WhenSortedBy;
+
+DEFINE_bool(verbose, false, "Verbose output");
 
 struct ParserTest : public ::testing::Test {
   void SetUp() {

@@ -1,11 +1,12 @@
-# Copyright 2012 Eugen Sawin <sawine@me73.com>
+# Copyright 2012 Eugen Sawin <esawin@me73.com>
 SRCDIR:=src
 TSTDIR:=src/test
 BINDIR:=bin
 OBJDIR:=bin/obj
-GTESTDIR:=libs/gtest-1.6.0/lib/.libs
+# GTESTDIR:=libs/gtest-1.6.0/lib/.libs
+# GTESTLIBS:=$(GTESTDIR)/libgtest.a $(GTESTDIR)/libgtest_main.a
+GTESTLIBS:=-lgtest -lgtest_main
 GFLAGSDIR:=libs/gflags-2.0/.libs
-GTESTLIBS:=$(GTESTDIR)/libgtest.a $(GTESTDIR)/libgtest_main.a
 CXX:=g++ -std=c++0x -Ilibs/gflags-2.0/src
 CFLAGS:=-Wall -O3 -g
 LIBS:=$(GFLAGSDIR)/libgflags.a -lpthread -lrt -llpsolve55 -lcolamd -ldl -lm
@@ -57,7 +58,7 @@ gambittest:
 	done
 	@echo "tested all (results in log/$(GAMBITLOG))";
 
-depend: gtest gflags
+depend: gflags # gtest
 
 makedirs:
 	@mkdir -p bin/obj

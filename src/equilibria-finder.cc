@@ -1,4 +1,4 @@
-// Copyright 2012 Eugen Sawin <sawine@me73.com>
+// Copyright 2012 Eugen Sawin <esawin@me73.com>
 #include "./equilibria-finder.h"
 #include <gflags/gflags.h>
 #include <cassert>
