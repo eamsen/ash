@@ -3,13 +3,13 @@ SRCDIR:=src
 TSTDIR:=src/test
 BINDIR:=bin
 OBJDIR:=bin/obj
-# GTESTDIR:=libs/gtest-1.6.0/lib/.libs
-# GTESTLIBS:=$(GTESTDIR)/libgtest.a $(GTESTDIR)/libgtest_main.a
 GTESTLIBS:=-lgtest -lgtest_main
-GFLAGSDIR:=libs/gflags-2.0/.libs
-CXX:=g++ -std=c++0x -Ilibs/gflags-2.0/src
-CFLAGS:=-Wall -O3 -g
-LIBS:=$(GFLAGSDIR)/libgflags.a -lpthread -lrt -llpsolve55 -lcolamd -ldl -lm
+GFLAGSDIR:=deps/gflags-2.0/.libs
+CXX:=g++ -std=c++0x
+# CXX:=g++ -std=c++0x -Ilibs/gflags-2.0/src
+CFLAGS:=-Wall -O3
+LIBS:=-lgflags -lpthread -lrt -llpsolve55 -lcolamd -ldl -lm
+# LIBS:=$(GFLAGSDIR)/libgflags.a -lpthread -lrt -llpsolve55 -lcolamd -ldl -lm
 TSTFLAGS:=
 TSTLIBS:=$(GTESTLIBS) $(LIBS)
 BINS:=ash
@@ -23,7 +23,7 @@ BINS:=$(addprefix $(BINDIR)/, $(BINS))
 TSTBINS:=$(addprefix $(BINDIR)/, $(TSTBINS))
 
 compile: makedirs $(BINS)
-	@echo compiled all
+	@echo "compiled all"
 
 profile: CFLAGS=-Wall -O3 -DPROFILE
 profile: LIBS+=-lprofiler
@@ -31,6 +31,9 @@ profile: clean compile
 
 opt: CFLAGS=-Ofast -flto -mtune=native -DNDEBUG
 opt: clean compile
+
+debug: CLFAGS=-O0 -g
+debug: compile
 
 ARGS:=-verbose=false -brief=false
 LOG:=perf-results.txt
@@ -58,25 +61,33 @@ gambittest:
 	done
 	@echo "tested all (results in log/$(GAMBITLOG))";
 
-depend: gflags # gtest
+depend: gflags cpplint
 
 makedirs:
 	@mkdir -p bin/obj
 
-gtest:
-	@cd libs/gtest-1.6.0/; ./configure; make;
-	@echo compiled gtest
-
 gflags:
-	@cd libs/gflags-2.0/; ./configure; make;
-	@echo compiled gflags
+	@tar xf deps/gflags-2.0.tar.gz -C deps/;
+	@cd deps/gflags-2.0/; ./configure; make;
+	@echo "compiled gflags"
 
-test: makedirs $(TSTBINS)
+cpplint: 
+	@if [ -f tools/cpplint/cpplint.py ];\
+	then\
+		echo "updating cpplint";\
+		cd tools/cpplint; git pull; cd ../..;\
+	else\
+		echo "cloning cpplint";\
+		mkdir tools && cd tools;\
+		git clone git@github.com:eamsen/cpplint.git; cd ..;\
+	fi
+
+check: makedirs $(TSTBINS)
 	@for t in $(TSTBINS); do ./$$t; done
-	@echo completed tests
+	@echo "completed tests"
 
 checkstyle:
-	@python libs/cpplint/cpplint.py --filter=-readability/streams\
+	@python tools/cpplint/cpplint.py --filter=-readability/streams\
 		$(SRCDIR)/*.h $(SRCDIR)/*.cc
 
 clean:
@@ -86,7 +97,7 @@ clean:
 	@echo cleaned
 
 .PRECIOUS: $(OBJS) $(TSTOBJS)
-.PHONY: compile profile opt perftest depend makedirs gtest gflags test\
+.PHONY: compile profile opt perftest depend makedirs gflags check cpplint\
 	checkstyle clean
 
 $(BINDIR)/%: $(OBJS) $(SRCDIR)/%.cc

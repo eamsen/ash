@@ -224,7 +224,11 @@ _STL_HEADERS = frozenset([
     'hash_set.h', 'iterator', 'list', 'list.h', 'map', 'memory', 'new',
     'pair.h', 'pthread_alloc', 'queue', 'set', 'set.h', 'sstream', 'stack',
     'stl_alloc.h', 'stl_relops.h', 'type_traits.h',
-    'utility', 'vector', 'vector.h',
+    'utility', 'vector', 'vector.h', 'typeindex', 'type_traits',
+    'chrono', 'initializer_list', 'tuple', 'scoped_allocator',
+    'cuchar', 'array', 'forward_list', 'unordered_set', 'unordered_map',
+    'ratio', 'cfenv', 'codecvt', 'regex', 'atomic', 'thread', 'mutex',
+    'future', 'condition_variable',
     ])
 
 
@@ -1370,7 +1374,7 @@ def CheckForNonStandardConstructs(filename, clean_lines, linenum,
   if Search(r'\b(const|volatile|void|char|short|int|long'
             r'|float|double|signed|unsigned'
             r'|schar|u?int8|u?int16|u?int32|u?int64)'
-            r'\s+(auto|register|static|extern|typedef)\b',
+            r'\s+(register|static|extern|typedef)\b',
             line):
     error(filename, linenum, 'build/storage_class', 5,
           'Storage class (static, extern, typedef, etc) should be first.')
@@ -2247,7 +2251,10 @@ def CheckStyle(filename, clean_lines, linenum, file_extension, class_state,
       # It's ok to have many commands in a switch case that fits in 1 line
       not ((cleansed_line.find('case ') != -1 or
             cleansed_line.find('default:') != -1) and
-           cleansed_line.find('break;') != -1)):
+           cleansed_line.find('break;') != -1) and
+      # Allow for inline lambda expressions.
+      # TODO(esawin): Find a better solution.
+      cleansed_line.find('](') == -1):
     error(filename, linenum, 'whitespace/newline', 4,
           'More than one command on the same line')
 
@@ -2556,7 +2563,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension, include_state,
     # We allow non-const references in a few standard places, like functions
     # called "swap()" or iostream operators like "<<" or ">>".
     if not Search(
-        r'(swap|Swap|operator[<>][<>])\s*\(\s*(?:[\w:]|<.*>)+\s*&',
+        r'(for|swap|Swap|operator[<>][<>])\s*\(\s*(?:[\w:]|<.*>)+\s*&',
         fnline):
       error(filename, linenum, 'runtime/references', 2,
             'Is this a non-const reference? '
