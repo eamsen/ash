@@ -2,5 +2,6 @@
 *.o
 *.a
 bin/*
-libs/*
+deps/*
 log/*
+tools/*
